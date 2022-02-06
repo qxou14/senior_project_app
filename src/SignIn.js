@@ -10,12 +10,16 @@ import {
 } from "react-native";
 import Input_button from "./Input_button";
 
-export default function SignIn() {
+export default function SignIn({ navigation }) {
   return (
     <View style={styles.container}>
       <Input_button place_holder_name="username" />
       <Input_button place_holder_name="password" />
       <Button title="Log In" onPress={() => console.log("hello world")} />
+      <Button
+        title="Register"
+        onPress={() => navigation.navigate("Register")}
+      />
     </View>
   );
 }
