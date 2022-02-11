@@ -6,21 +6,24 @@ export default function SignIn({ navigation }) {
   return (
     <View style={styles.container}>
 
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Username"
-          placeholderTextColor="black"
-        />
-      </View>
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.TextInput}
+            placeholder="Username"
+            placeholderTextColor="green"
+          />
+        </View>
 
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Password"
-          placeholderTextColor="black"
-        />
-      </View>
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.TextInput}
+            placeholder="Password"
+            placeholderTextColor="green"
+          />  
+        </View>
+
+
+    <View style={styles.bottomContainer}>
 
       <Pressable style = {styles.button} 
                  onPress={() => console.log("hello world")}>
@@ -32,6 +35,8 @@ export default function SignIn({ navigation }) {
         <Text style = {styles.buttonText}>Register</Text>
       </Pressable>
 
+      </View>
+
     </View>
   );
 }
@@ -39,19 +44,25 @@ export default function SignIn({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#CCFFCC",
     alignItems: "center",
     justifyContent: "center",
   },
 
-  inputView: {
-    backgroundColor: "#B9EBB5",
+  bottomContainer:{
+    position : 'absolute',
+    top : 450 , 
+  },
+
+  inputView: {  
+    backgroundColor: "#F6F6F6",
+    
     borderRadius: 30,
-    width: "70%",
-    height: 40,
+    width: "80%",
+    height: 60,
     marginBottom: 20,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: 'center',
   },
 
   TextInput: {
@@ -62,18 +73,20 @@ const styles = StyleSheet.create({
   },
 
   button: {
+    
     alignItems: "center",
-    backgroundColor: "#61C259",
+    backgroundColor: "#5DB075",
     paddingVertical: 20,
-    paddingHorizontal: 65,
-    borderRadius: 10,
-    marginTop: 25,
+    paddingHorizontal: 100,
+    borderRadius: 100, 
+    marginBottom: 20, 
+    
   },
 
   buttonText: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "bold",
     letterSpacing: 0.25,
-    color: "black"
+    color: "white"
   },
 });

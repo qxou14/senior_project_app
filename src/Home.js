@@ -1,9 +1,18 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, Button, Alert, Pressable, Text } from "react-native";
+import { StyleSheet, View, Button, Alert, Pressable, Text , Image} from "react-native";
 
 export default function Home({ navigation }) {
   return (
     <View style={styles.container}>
+
+      <Image style = {styles.logo}  
+      source={require('../assets/logo.png')}>
+        </Image>
+
+      <Text style={styles.title}>NeruoGen</Text>
+
+         
+      
 
       <Pressable style = {styles.button}
                  onPress={() => navigation.navigate("Patient SignIn")}>
@@ -22,24 +31,37 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#CCFFCC",
     alignItems: "center",
     justifyContent: "center",
+    padding: 0 
   },
 
-  button: {
+  logo:{
+    width:200,
+    height : 200 
+  },
+
+  title:{
+    color : "#0081A7" , 
+    fontSize: 40 ,
+    fontWeight : "normal",
+    paddingBottom : 60 ,  
+  },
+
+  button: { 
     alignItems: "center",
-    backgroundColor: "#67CB5E",
+    backgroundColor: "#5DB075",
     paddingVertical: 20,
     paddingHorizontal: 40,
-    borderRadius: 10,
+    borderRadius: 100, 
     marginBottom: 20,
   },
 
   buttonText: {
-    fontSize: 16,
+    fontSize: 25,
     fontWeight: "bold",
     letterSpacing: 0.25,
-    color: "black"
+    color: "white"
   },
 });

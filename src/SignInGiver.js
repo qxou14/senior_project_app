@@ -1,8 +1,8 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, Button, TextInput, Pressable, Text} from "react-native";
+import { StyleSheet, View, Pressable, Text, TextInput} from "react-native";
 import Input_button from "./Input_button";
 
-export default function SignInGiver({ navigation }) {
+export default function SignIn({ navigation }) {
   return (
     <View style={styles.container}>
 
@@ -10,7 +10,7 @@ export default function SignInGiver({ navigation }) {
         <TextInput
           style={styles.TextInput}
           placeholder="Username"
-          placeholderTextColor="black"
+          placeholderTextColor="green"
         />
       </View>
 
@@ -18,9 +18,11 @@ export default function SignInGiver({ navigation }) {
         <TextInput
           style={styles.TextInput}
           placeholder="Password"
-          placeholderTextColor="black"
+          placeholderTextColor="green"
         />
       </View>
+
+    <View style={styles.bottomContainer}>
 
       <Pressable style = {styles.button} 
                  onPress={() => console.log("hello world")}>
@@ -32,6 +34,8 @@ export default function SignInGiver({ navigation }) {
         <Text style = {styles.buttonText}>Register</Text>
       </Pressable>
 
+      </View>
+
     </View>
   );
 }
@@ -39,16 +43,22 @@ export default function SignInGiver({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#CCFFCC",
     alignItems: "center",
     justifyContent: "center",
   },
 
-  inputView: {
-    backgroundColor: "#B9EBB5",
+  bottomContainer:{
+    position : 'absolute',
+    top : 450 , 
+  },
+  
+  inputView: {  
+    backgroundColor: "#F6F6F6",
+    
     borderRadius: 30,
-    width: "70%",
-    height: 40,
+    width: "80%",
+    height: 60,
     marginBottom: 20,
     alignItems: "center",
     justifyContent: "center",
@@ -62,18 +72,20 @@ const styles = StyleSheet.create({
   },
 
   button: {
+    
     alignItems: "center",
-    backgroundColor: "#61C259",
+    backgroundColor: "#5DB075",
     paddingVertical: 20,
-    paddingHorizontal: 65,
-    borderRadius: 10,
-    marginTop: 25,
+    paddingHorizontal: 100,
+    borderRadius: 100, 
+    marginBottom: 20, 
+    
   },
 
   buttonText: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "bold",
     letterSpacing: 0.25,
-    color: "black"
+    color: "white"
   },
 });
