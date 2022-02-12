@@ -1,29 +1,34 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, Button, Alert, Pressable, Text , Image} from "react-native";
+import {
+  StyleSheet,
+  View,
+  Button,
+  Alert,
+  Pressable,
+  Text,
+  Image,
+} from "react-native";
 
 export default function Home({ navigation }) {
   return (
     <View style={styles.container}>
+      <Image style={styles.logo} source={require("../assets/logo.png")}></Image>
 
-      <Image style = {styles.logo}  
-      source={require('../assets/logo.png')}>
-        </Image>
+      <Text style={styles.title}>NeuroGen</Text>
 
-      <Text style={styles.title}>NeruoGen</Text>
-
-         
-      
-
-      <Pressable style = {styles.button}
-                 onPress={() => navigation.navigate("Patient SignIn")}>
-        <Text style = {styles.buttonText}>Patient Sign-in</Text>
+      <Pressable
+        style={styles.button}
+        onPress={() => navigation.navigate("Patient SignIn")}
+      >
+        <Text style={styles.buttonText}>Patient Sign-in</Text>
       </Pressable>
 
-      <Pressable style = {styles.button}
-                 onPress={() => navigation.navigate("CareGiver SignIn")}>
-        <Text style = {styles.buttonText}>Caregiver Sign-in</Text>
+      <Pressable
+        style={styles.button}
+        onPress={() => navigation.navigate("CareGiver SignIn")}
+      >
+        <Text style={styles.buttonText}>Caregiver Sign-in</Text>
       </Pressable>
-
     </View>
   );
 }
@@ -34,27 +39,27 @@ const styles = StyleSheet.create({
     backgroundColor: "#CCFFCC",
     alignItems: "center",
     justifyContent: "center",
-    padding: 0 
+    padding: 0,
   },
 
-  logo:{
-    width:200,
-    height : 200 
+  logo: {
+    width: 200,
+    height: 200,
   },
 
-  title:{
-    color : "#0081A7" , 
-    fontSize: 40 ,
-    fontWeight : "normal",
-    paddingBottom : 60 ,  
+  title: {
+    color: "#0081A7",
+    fontSize: 40,
+    fontWeight: "normal",
+    paddingBottom: 60,
   },
 
-  button: { 
+  button: {
     alignItems: "center",
     backgroundColor: "#5DB075",
     paddingVertical: 20,
     paddingHorizontal: 40,
-    borderRadius: 100, 
+    borderRadius: 100,
     marginBottom: 20,
   },
 
@@ -62,6 +67,6 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: "bold",
     letterSpacing: 0.25,
-    color: "white"
+    color: "white",
   },
 });
