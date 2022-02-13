@@ -1,11 +1,34 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, Pressable, Text, TextInput } from "react-native";
 import Input_button from "./Input_button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { auth } from "../firebase";
 
 export default function SignIn({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  //authentication listener - navigates to next page when a login successfully occurs
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        navigation.navigate("Caregiver Content")
+      }
+    })
+
+    return unsubscribe
+  }, [])
+
+  const handleLogin = () => {
+    auth 
+      .signInWithEmailAndPassword(email, password)
+      .then(userCredentials => {
+        const user = userCredentials.user;
+        console.log('Logged in with:', user.email);
+      })
+      .catch(error => alert("Invalid password or username"))
+    }
+
   return (
     <View style={styles.container}>
       <View style={styles.inputView}>
@@ -30,7 +53,7 @@ export default function SignIn({ navigation }) {
       <View style={styles.bottomContainer}>
         <Pressable
           style={styles.button}
-          onPress={() => console.log("hello world")}
+          onPress={handleLogin}
         >
           <Text style={styles.buttonText}>Login</Text>
         </Pressable>

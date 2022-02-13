@@ -55,7 +55,7 @@ export default function Register() {
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
-          placeholder="Confirmed password"
+          placeholder="Confirm password"
           placeholderTextColor="green"
           onChangeText={(password1) => setC_Password(password1)}
           secureTextEntry={true}
@@ -64,7 +64,7 @@ export default function Register() {
 
       <View style={styles.bottomContainer}>
         <Pressable style={styles.button} onPress={handleRegister}>
-          <Text style={styles.buttonText}>Sign up now !</Text>
+          <Text style={styles.buttonText}>Sign up now!</Text>
         </Pressable>
       </View>
     </View>
