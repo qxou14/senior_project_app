@@ -1,33 +1,56 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, Pressable, Text, TextInput, Alert } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Pressable,
+  Text,
+  TextInput,
+  Alert,
+} from "react-native";
 import Input_button from "./Input_button";
 import { useEffect, useState } from "react";
 import { auth } from "../firebase";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function SignIn({ navigation }) {
+  //states for email and password
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  //this is for show password
+  const [icon, setIcon] = useState("eye");
+  const [hidePass, setHidePass] = useState(true);
+
   //authentication listener - navigates to next page when a login successfully occurs
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        navigation.navigate("Patient Content")
+        navigation.navigate("Patient Content");
       }
-    })
+    });
 
-    return unsubscribe
-  }, [])
+    return unsubscribe;
+  }, []);
 
   const handleLogin = () => {
-    auth 
+    auth
       .signInWithEmailAndPassword(email, password)
-      .then(userCredentials => {
+      .then((userCredentials) => {
         const user = userCredentials.user;
-        console.log('Logged in with:', user.email);
+        console.log("Logged in with:", user.email);
       })
-      .catch(error => alert("Invalid password or username"))
+      .catch((error) => alert("Invalid password or username"));
+  };
+
+  const handleHidePassword = () => {
+    if (icon === "eye") {
+      setIcon("eye-off");
+      setHidePass(false);
+    } else {
+      setIcon("eye");
+      setHidePass(true);
     }
+  };
 
   return (
     <View style={styles.container}>
@@ -45,16 +68,21 @@ export default function SignIn({ navigation }) {
           style={styles.TextInput}
           placeholder="Password"
           placeholderTextColor="green"
-          secureTextEntry={true}
+          secureTextEntry={hidePass}
           onChangeText={(password) => setPassword(password)}
         />
+        <Pressable>
+          <MaterialCommunityIcons
+            name={icon}
+            size={24}
+            color="black"
+            onPress={handleHidePassword}
+          />
+        </Pressable>
       </View>
 
       <View style={styles.bottomContainer}>
-        <Pressable
-          style={styles.button}
-          onPress={handleLogin}
-        >
+        <Pressable style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonText}>Login</Text>
         </Pressable>
         <Pressable
@@ -84,13 +112,13 @@ const styles = StyleSheet.create({
 
   inputView: {
     backgroundColor: "#F6F6F6",
-
     borderRadius: 30,
     width: "80%",
     height: 60,
     marginBottom: 20,
     alignItems: "center",
     justifyContent: "center",
+    flexDirection: "row",
   },
 
   TextInput: {

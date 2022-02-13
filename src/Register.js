@@ -11,11 +11,19 @@ import {
 import Input_button from "./Input_button";
 import { auth } from "../firebase";
 import { useState } from "react";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function Register() {
+  //user entered info
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [c_password, setC_Password] = useState("");
+
+  //this is for show password
+  const [icon, setIcon] = useState("eye");
+  const [hidePass, setHidePass] = useState(true);
+  const [iconC, setIconC] = useState("eye");
+  const [hidePassC, setHidePassC] = useState(true);
 
   const handleRegister = () => {
     //check password match
@@ -28,9 +36,29 @@ export default function Register() {
       .then((userCredentials) => {
         const user = userCredentials.user;
         console.log(user.email);
-        alert("Sucessfully registered!");
       })
       .catch((error) => alert(error.message));
+  };
+
+  const handleHidePassword = () => {
+    if (icon === "eye") {
+      setIcon("eye-off");
+      setHidePass(false);
+    } else {
+      setIcon("eye");
+      setHidePass(true);
+    }
+  };
+
+  //this is for comfirming password. Same as above function
+  const handleHidePasswordC = () => {
+    if (iconC === "eye") {
+      setIconC("eye-off");
+      setHidePassC(false);
+    } else {
+      setIconC("eye");
+      setHidePassC(true);
+    }
   };
 
   return (
@@ -49,8 +77,16 @@ export default function Register() {
           placeholder="Enter password"
           placeholderTextColor="green"
           onChangeText={(password) => setPassword(password)}
-          secureTextEntry={true}
+          secureTextEntry={hidePass}
         />
+        <Pressable>
+          <MaterialCommunityIcons
+            name={icon}
+            size={24}
+            color="black"
+            onPress={handleHidePassword}
+          />
+        </Pressable>
       </View>
       <View style={styles.inputView}>
         <TextInput
@@ -58,8 +94,16 @@ export default function Register() {
           placeholder="Confirm password"
           placeholderTextColor="green"
           onChangeText={(password1) => setC_Password(password1)}
-          secureTextEntry={true}
+          secureTextEntry={hidePassC}
         />
+        <Pressable>
+          <MaterialCommunityIcons
+            name={iconC}
+            size={24}
+            color="black"
+            onPress={handleHidePasswordC}
+          />
+        </Pressable>
       </View>
 
       <View style={styles.bottomContainer}>
@@ -86,13 +130,13 @@ const styles = StyleSheet.create({
 
   inputView: {
     backgroundColor: "#F6F6F6",
-
     borderRadius: 30,
     width: "80%",
     height: 40,
     marginBottom: 20,
     alignItems: "center",
     justifyContent: "center",
+    flexDirection: "row",
   },
 
   TextInput: {
