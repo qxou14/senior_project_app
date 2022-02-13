@@ -1,8 +1,11 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, Pressable, Text, TextInput } from "react-native";
 import Input_button from "./Input_button";
+import { useState } from "react";
 
 export default function SignIn({ navigation }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   return (
     <View style={styles.container}>
       <View style={styles.inputView}>
@@ -10,6 +13,7 @@ export default function SignIn({ navigation }) {
           style={styles.TextInput}
           placeholder="Username"
           placeholderTextColor="green"
+          onChangeText={(email) => setEmail(email)}
         />
       </View>
 
@@ -18,6 +22,8 @@ export default function SignIn({ navigation }) {
           style={styles.TextInput}
           placeholder="Password"
           placeholderTextColor="green"
+          secureTextEntry={true}
+          onChangeText={(password) => setPassword(password)}
         />
       </View>
 
