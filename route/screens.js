@@ -18,8 +18,16 @@ const AppNavigator = () => {
         <Stack.Screen name="Patient SignIn" component={SignIn} />
         <Stack.Screen name="CareGiver SignIn" component={SignInGiver} />
         <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="Patient Content" component={Patient_content} />
-        <Stack.Screen name="Caregiver Content" component={Caregiver_content} />
+        <Stack.Screen
+          name="Patient Content"
+          component={Patient_content}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Caregiver Content"
+          component={Caregiver_content}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
