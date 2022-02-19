@@ -7,28 +7,58 @@ import {
   Pressable,
   Text,
   Image,
+  FlatList,
 } from "react-native";
 import { useEffect, useState } from "react";
 
 export default function Todo({ navigation }) {
+  const [Item, setItem] = useState([]);
+
   useEffect(() => {
-    db.collection("example")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, " => ", doc.data().test);
+    const get_data = () => {
+      const data = db
+        .collection("Todo")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            // console.log(doc.id, " => ", doc.data());
+            Item.push({
+              id: doc.id,
+              Action: doc.data().Action,
+              Date: doc.data().Date,
+              Time: doc.data().Time,
+            });
+          });
+        })
+        .catch((error) => {
+          console.log("Error getting documents: ", error);
         });
-      })
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
-      });
-    console.log("hellowolrd");
+    };
+
+    get_data();
   }, []);
+
+  console.log(Item.length, "outside useeffect");
+  // console.log(Item);
+  const read_items = Item.map((item) => (
+    <Text key={item.id}>{item.Action}</Text>
+  ));
 
   return (
     <View style={styles.container}>
-      <Text>Todo</Text>
+      {/* <Text>{Item[1].Action}</Text>
+      {read_items} */}
+
+      {/* <FlatList
+        data={Item}
+        renderItem={({ item }) => (
+          <Text style={styles.item} key={item.id}>
+            {item.Action}
+          </Text>
+        )}
+      /> */}
+      {read_items}
     </View>
   );
 }
