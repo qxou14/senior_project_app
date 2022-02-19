@@ -3,8 +3,9 @@
 // import { getAnalytics } from "firebase/analytics";
 
 import "firebase/compat/auth";
-import "firebase/compat/database";
+// import "firebase/compat/database";
 import firebase from "firebase/compat/app";
+import "firebase/compat/firestore";
 
 const {
   apiKey,
@@ -40,5 +41,6 @@ if (firebase.app.length === 0) {
 }
 
 const auth = firebase.auth();
+const db = firebase.firestore();
 
-export { auth };
+export { auth, db };

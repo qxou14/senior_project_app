@@ -3,7 +3,6 @@ import { auth } from "../firebase";
 import Input_button from "./Input_button";
 
 export default function Patient_content({ navigation }) {
-
   const handleSignOut = () => {
     auth
       .signOut()
@@ -11,32 +10,42 @@ export default function Patient_content({ navigation }) {
         navigation.replace("Home");
         console.log("User signing out");
       })
-      .catch(error => alert(error.message))
-  }
+      .catch((error) => alert(error.message));
+  };
 
   return (
     <View style={styles.container}>
-      
-      <Pressable style = {styles.button} onPress={() => console.log("From Register")}>
-        <Text style = {styles.buttonText}>Exercises</Text>
+      <Pressable
+        style={styles.button}
+        onPress={() => console.log("From Register")}
+      >
+        <Text style={styles.buttonText}>Exercises</Text>
       </Pressable>
 
-      <Pressable style = {styles.button} onPress={() => console.log("From Register")}>
-        <Text style = {styles.buttonText}>Reminders</Text>
+      <Pressable
+        style={styles.button}
+        onPress={() => navigation.navigate("Todo")}
+      >
+        <Text style={styles.buttonText}>ToDo List</Text>
       </Pressable>
 
-      <Pressable style = {styles.button} onPress={() => console.log("From Register")}>
-        <Text style = {styles.buttonText}>Map</Text>
+      <Pressable
+        style={styles.button}
+        onPress={() => console.log("From Register")}
+      >
+        <Text style={styles.buttonText}>Map</Text>
       </Pressable>
 
-      <Pressable style = {styles.button} onPress={() => console.log("From Register")}>
-        <Text style = {styles.buttonText}>Calendar</Text>
+      <Pressable
+        style={styles.button}
+        onPress={() => console.log("From Register")}
+      >
+        <Text style={styles.buttonText}>Calendar</Text>
       </Pressable>
 
-      <Pressable style = {styles.SignOutbutton} onPress = {handleSignOut}>
-        <Text style = {styles.buttonText}>Sign out</Text>
+      <Pressable style={styles.SignOutbutton} onPress={handleSignOut}>
+        <Text style={styles.buttonText}>Sign out</Text>
       </Pressable>
-      
     </View>
   );
 }
@@ -65,7 +74,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25,
     borderRadius: 10,
     position: "absolute",
-    bottom: 35
+    bottom: 35,
   },
 
   buttonText: {

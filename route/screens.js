@@ -7,6 +7,7 @@ import Home from "../src/Home";
 import SignInGiver from "../src/SignInGiver";
 import Patient_content from "../src/Patient_content";
 import Caregiver_content from "../src/Caregiver_content";
+import Todo from "../src/Todo";
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +29,8 @@ const AppNavigator = () => {
           component={Caregiver_content}
           options={{ headerShown: false }}
         />
+
+        <Stack.Screen name="Todo" component={Todo} />
       </Stack.Navigator>
     </NavigationContainer>
   );
