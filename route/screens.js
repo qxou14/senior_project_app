@@ -8,6 +8,7 @@ import SignInGiver from "../src/SignInGiver";
 import Patient_content from "../src/Patient_content";
 import Caregiver_content from "../src/Caregiver_content";
 import Todo from "../src/Todo";
+import Todo_Giver from "../src/Todo_Giver";
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +32,7 @@ const AppNavigator = () => {
         />
 
         <Stack.Screen name="Todo" component={Todo} />
+        <Stack.Screen name="Todo_Giver" component={Todo_Giver} />
       </Stack.Navigator>
     </NavigationContainer>
   );

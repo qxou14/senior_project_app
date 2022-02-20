@@ -26,7 +26,7 @@ export default function Patient_content({ navigation }) {
         style={styles.button}
         onPress={() => navigation.navigate("Todo")}
       >
-        <Text style={styles.buttonText}>ToDo List</Text>
+        <Text style={styles.buttonText}>Daily Schedule</Text>
       </Pressable>
 
       <Pressable
