@@ -1,9 +1,18 @@
 import { auth, db } from "../firebase";
-import { StyleSheet, View, Text, FlatList, Pressable } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  FlatList,
+  Pressable,
+  TextInput,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 
 export default function Todo_Giver({ navigation }) {
   const [Item, setItem] = useState([]);
+  const [time, setTime] = useState(0);
+  const [action, setAction] = useState("");
 
   useEffect(() => {
     const ref = db.collection("Todo");
@@ -14,7 +23,6 @@ export default function Todo_Giver({ navigation }) {
         objs.push({
           key: doc.id,
           Action: doc.data().Action,
-          Date: doc.data().Date,
           Time: doc.data().Time,
         });
       });
@@ -22,9 +30,43 @@ export default function Todo_Giver({ navigation }) {
     });
   }, []);
 
+  const add_info = () => {
+    //
+    console.log("add_info");
+    db.collection("Todo")
+      .doc(time)
+      .set({
+        Action: action,
+        Time: time,
+      })
+      .then(() => {
+        console.log("Document written !");
+      })
+      .catch((error) => {
+        console.log("Error: ", error);
+      });
+  };
+
   return (
     <View style={styles.container}>
-      <Pressable style={styles.button} onPress={() => console.log("From todo")}>
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.TextInput}
+          placeholder="Time"
+          placeholderTextColor="green"
+          onChangeText={(time) => setTime(time)}
+        />
+      </View>
+
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.TextInput}
+          placeholder="Action"
+          placeholderTextColor="green"
+          onChangeText={(action) => setAction(action)}
+        />
+      </View>
+      <Pressable style={styles.button} onPress={add_info}>
         <Text style={styles.buttonText}>Add</Text>
       </Pressable>
 
@@ -46,6 +88,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 0,
+  },
+
+  inputView: {
+    backgroundColor: "#F6F6F6",
+    borderRadius: 5,
+    width: "75%",
+    height: 60,
+    marginBottom: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    padding: 15,
   },
 
   logo: {
