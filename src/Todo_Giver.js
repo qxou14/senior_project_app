@@ -47,6 +47,18 @@ export default function Todo_Giver({ navigation }) {
       });
   };
 
+  const delete_info = (id) => {
+    db.collection("Todo")
+      .doc(id)
+      .delete()
+      .then(() => {
+        console.log("document deleted");
+      })
+      .catch((error) => {
+        console.log("Error: ", error);
+      });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.inputView}>
@@ -73,8 +85,17 @@ export default function Todo_Giver({ navigation }) {
       <FlatList
         data={Item}
         renderItem={({ item }) => (
-          <Text style={styles.item} key={item.id}>
+          <Text style={styles.item} key={item.key}>
             {item.Action}
+            {item.key}
+            <Pressable
+              style={styles.button}
+              onPress={() => {
+                delete_info(item.key);
+              }}
+            >
+              <Text style={styles.buttonText}>Delete</Text>
+            </Pressable>
           </Text>
         )}
       />
