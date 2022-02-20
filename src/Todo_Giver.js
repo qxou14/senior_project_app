@@ -1,5 +1,5 @@
 import { auth, db } from "../firebase";
-import { StyleSheet, View, Text, FlatList } from "react-native";
+import { StyleSheet, View, Text, FlatList, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
 
 export default function Todo_Giver({ navigation }) {
@@ -24,16 +24,18 @@ export default function Todo_Giver({ navigation }) {
 
   return (
     <View style={styles.container}>
-      {
-        <FlatList
-          data={Item}
-          renderItem={({ item }) => (
-            <Text style={styles.item} key={item.id}>
-              {item.Action}
-            </Text>
-          )}
-        />
-      }
+      <Pressable style={styles.button} onPress={() => console.log("From todo")}>
+        <Text style={styles.buttonText}>Add</Text>
+      </Pressable>
+
+      <FlatList
+        data={Item}
+        renderItem={({ item }) => (
+          <Text style={styles.item} key={item.id}>
+            {item.Action}
+          </Text>
+        )}
+      />
     </View>
   );
 }
@@ -61,8 +63,8 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     backgroundColor: "#5DB075",
-    paddingVertical: 20,
-    paddingHorizontal: 40,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     borderRadius: 100,
     marginBottom: 20,
   },
