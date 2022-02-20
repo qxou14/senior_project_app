@@ -105,8 +105,8 @@ const styles = StyleSheet.create({
 
   inputView: {
     backgroundColor: "#F6F6F6",
-    borderRadius: 5,
-    width: "75%",
+    borderRadius: 30,
+    width: "80%",
     height: 60,
     marginBottom: 20,
     alignItems: "center",
@@ -118,15 +118,15 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     height: 50,
     flex: 1,
-    padding: 15,
+    padding: 10,
   },
 
   button: {
     alignItems: "center",
     backgroundColor: "#5DB075",
-    paddingVertical: 15,
-    paddingHorizontal: 120,
-    borderRadius: 30,
+    paddingVertical: 20,
+    paddingHorizontal: 100,
+    borderRadius: 100,
     marginBottom: 20,
   },
 
