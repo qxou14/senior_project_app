@@ -2,65 +2,45 @@ import { auth, db } from "../firebase";
 import {
   StyleSheet,
   View,
-  Button,
-  Alert,
-  Pressable,
   Text,
-  Image,
-  FlatList,
+  FlatList
 } from "react-native";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Todo({ navigation }) {
   const [Item, setItem] = useState([]);
 
-  useEffect(() => {
-    const get_data = () => {
-      const data = db
-        .collection("Todo")
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            // console.log(doc.id, " => ", doc.data());
-            Item.push({
-              id: doc.id,
-              Action: doc.data().Action,
-              Date: doc.data().Date,
-              Time: doc.data().Time,
-            });
-          });
-        })
-        .catch((error) => {
-          console.log("Error getting documents: ", error);
+  useEffect(() => { 
+    const ref = db.collection('Todo')
+    ref.onSnapshot((query) => {
+      const objs = [];
+
+      query.forEach((doc) => {
+        objs.push({
+          key: doc.id,
+          Action: doc.data().Action,
+          Date: doc.data().Date,
+          Time: doc.data().Time,
+
         });
-    };
-
-    get_data();
-  }, []);
-
-  console.log(Item.length, "outside useeffect");
-  // console.log(Item);
-  const read_items = Item.map((item) => (
-    <Text key={item.id}>{item.Action}</Text>
-  ));
+      });
+    setItem(objs);
+    });
+  }, [])
 
   return (
-    <View style={styles.container}>
-      {/* <Text>{Item[1].Action}</Text>
-      {read_items} */}
-
-      {/* <FlatList
+    <View style = {styles.container}>
+    
+      { <FlatList
         data={Item}
         renderItem={({ item }) => (
           <Text style={styles.item} key={item.id}>
             {item.Action}
           </Text>
         )}
-      /> */}
-      {read_items}
+      /> }
     </View>
-  );
+    );
 }
 
 const styles = StyleSheet.create({
