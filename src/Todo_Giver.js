@@ -8,6 +8,7 @@ import {
   TextInput,
 } from "react-native";
 import React, { useEffect, useState } from "react";
+import Checkbox from "expo-checkbox";
 
 export default function Todo_Giver({ navigation }) {
   const [Item, setItem] = useState([]);
@@ -24,6 +25,7 @@ export default function Todo_Giver({ navigation }) {
           key: doc.id,
           Action: doc.data().Action,
           Time: doc.data().Time,
+          check: doc.data().check,
         });
       });
       setItem(objs);
@@ -38,6 +40,7 @@ export default function Todo_Giver({ navigation }) {
       .set({
         Action: action,
         Time: time,
+        check: false,
       })
       .then(() => {
         console.log("Document written !");
@@ -57,6 +60,19 @@ export default function Todo_Giver({ navigation }) {
       .catch((error) => {
         console.log("Error: ", error);
       });
+  };
+
+  const check_box = (id, original, action, time) => {
+    // console.log("box is clicked");
+    // console.log(id);
+    // console.log(original);
+    // console.log(!original);
+    // console.log("------");
+    db.collection("Todo").doc(id).set({
+      Action: action,
+      Time: time,
+      check: !original,
+    });
   };
 
   return (
@@ -86,6 +102,13 @@ export default function Todo_Giver({ navigation }) {
         data={Item}
         renderItem={({ item }) => (
           <Text style={styles.item} key={item.key}>
+            <Pressable
+              onPress={() => {
+                check_box(item.key, item.check, item.Action, item.Time);
+              }}
+            >
+              <Checkbox disabled value={item.check} />
+            </Pressable>
             {item.Action}
             {item.key}
             <Pressable
