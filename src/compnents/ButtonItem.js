@@ -1,16 +1,18 @@
 import React from 'react';
 import {Text,View,StyleSheet,Pressable} from 'react-native';
 
+// This is another approach for the button Ui. I didn't use this one. 
 
-export default function  ButtonItem() {
+export default function  ButtonItem(props) {
 
     return(
         <View styles={styles.container}>
         <Pressable
         style={styles.button}
         onPress={() => console.log("From Register")}
+        
       >
-        <Text style={styles.buttonText}>Exercises</Text>
+        <Text style={styles.buttonText}>{props.Text}</Text>
       </Pressable>
       </View>
     )
