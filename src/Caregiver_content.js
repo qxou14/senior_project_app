@@ -1,6 +1,13 @@
-import { StyleSheet, View, Button, Alert, Pressable, Text } from "react-native";
+import { StyleSheet, View, Button, Alert, Pressable, Text ,SafeAreaView} from "react-native";
 import { auth } from "../firebase";
 import Input_button from "./Input_button";
+import Feather from 'react-native-vector-icons/Feather';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+
+
+Feather.loadFont();
+MaterialCommunityIcons.loadFont();
 
 export default function Caregiver_content({ navigation }) {
   const handleSignOut = () => {
@@ -15,37 +22,53 @@ export default function Caregiver_content({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Pressable
-        style={styles.button}
-        onPress={() => console.log("From Register")}
-      >
-        <Text style={styles.buttonText}>Reports</Text>
-      </Pressable>
 
-      <Pressable
-        style={styles.button}
-        onPress={() => console.log("From Register")}
-      >
-        <Text style={styles.buttonText}>Map</Text>
-      </Pressable>
+      <SafeAreaView>
+        <View style={styles.headerWrapper}>
+            <Feather name="settings" size={56} onPress={() => console.log("From Register")} />
+            <MaterialCommunityIcons name="logout" size={56} onPress={handleSignOut} />
+        </View>
+      </SafeAreaView>
 
-      <Pressable
-        style={styles.button}
-        onPress={() => console.log("From Register")}
-      >
-        <Text style={styles.buttonText}>Feedback</Text>
-      </Pressable>
+      <View style= {styles.firstLayer}> 
 
-      <Pressable
-        style={styles.button}
-        onPress={() => navigation.navigate("Todo_Giver")}
-      >
-        <Text style={styles.buttonText}>Daily Schedule</Text>
-      </Pressable>
+          <Pressable
+            style={styles.button}
+            onPress={() => console.log("From Register")}
+          >
+            <Text style={styles.buttonText}>Reports</Text>
+          </Pressable>
 
-      <Pressable style={styles.SignOutbutton} onPress={handleSignOut}>
-        <Text style={styles.buttonText}>Sign out</Text>
-      </Pressable>
+          <Pressable
+            style={styles.button}
+            onPress={() => console.log("From Register")}
+          >
+            <Text style={styles.buttonText}>Map</Text>
+          </Pressable>
+      </View>
+
+
+      <View style= {styles.SecondLayer}> 
+
+
+        <Pressable
+          style={styles.button}
+          onPress={() => console.log("From Register")}
+        >
+          <Text style={styles.buttonText}>Feedback</Text>
+        </Pressable>
+
+        <Pressable
+          style={styles.button}
+          onPress={() => navigation.navigate("Todo_Giver")}
+        >
+          <Text style={styles.buttonText}>Daily Schedule</Text>
+        </Pressable>
+
+      </View>
+
+
+      
     </View>
   );
 }
@@ -53,34 +76,51 @@ export default function Caregiver_content({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: "#E6EAE4",
+  },
+  headerWrapper:{
+    flexDirection : 'row',
+    justifyContent :"space-between",
+    paddingTop : 20 , 
+    alignItems : "center" , 
+  },
+
+  firstLayer:{
+  
+    flexWrap :'wrap',
+    flexDirection : 'row',
+    justifyContent : 'space-between',
+    marginBottom : 70 , 
+    marginTop: 180,
+    marginLeft : 3 , 
+    marginRight : 3 , 
+  },
+
+  SecondLayer:{
+    flexWrap :'wrap',
+    flexDirection : 'row',
+    justifyContent : 'space-between',
+    marginBottom : 70 , 
+    marginLeft : 3 , 
+    marginRight : 3 , 
   },
 
   button: {
     alignItems: "center",
     backgroundColor: "#5DB075",
-    paddingVertical: 15,
-    paddingHorizontal: 25,
-    borderRadius: 10,
-    marginTop: 10,
-  },
-
-  SignOutbutton: {
-    alignItems: "center",
-    backgroundColor: "#5DB075",
-    paddingVertical: 15,
-    paddingHorizontal: 25,
-    borderRadius: 10,
-    position: "absolute",
-    bottom: 35,
+    height : 125 ,
+    width : '46%', 
+    justifyContent :"center",
+    borderRadius: 50,
+    
   },
 
   buttonText: {
+     marginTop: 5, 
     fontSize: 25,
     fontWeight: "bold",
     letterSpacing: 0.25,
-    color: "white",
+    color: "black",
+    textAlign: 'center',  
   },
 });
