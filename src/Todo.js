@@ -1,6 +1,7 @@
 import { auth, db } from "../firebase";
-import { StyleSheet, View, Text, FlatList } from "react-native";
+import { StyleSheet, View, Text, FlatList, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
+import Checkbox from "expo-checkbox";
 
 export default function Todo({ navigation }) {
   const [Item, setItem] = useState([]);
@@ -14,13 +15,26 @@ export default function Todo({ navigation }) {
         objs.push({
           key: doc.id,
           Action: doc.data().Action,
-          Date: doc.data().Date,
           Time: doc.data().Time,
+          check: doc.data().check,
         });
       });
       setItem(objs);
     });
   }, []);
+
+  const check_box = (id, original, action, time) => {
+    // console.log("box is clicked");
+    // console.log(id);
+    // console.log(original);
+    // console.log(!original);
+    // console.log("------");
+    db.collection("Todo").doc(id).set({
+      Action: action,
+      Time: time,
+      check: !original,
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -29,7 +43,15 @@ export default function Todo({ navigation }) {
           data={Item}
           renderItem={({ item }) => (
             <Text style={styles.item} key={item.id}>
+              <Pressable
+                onPress={() => {
+                  check_box(item.key, item.check, item.Action, item.Time);
+                }}
+              >
+                <Checkbox disabled value={item.check} />
+              </Pressable>
               {item.Action}
+              {item.key}
             </Text>
           )}
         />
