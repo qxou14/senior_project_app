@@ -46,7 +46,7 @@ export default function Caregiver_content({ navigation }) {
       <View style={styles.firstLayer}>
         <Pressable
           style={styles.button}
-          onPress={() => navigation.navigate("Add_photo")}
+          onPress={() => navigation.navigate("C_Album")}
         >
           <Text style={styles.buttonText}>Album</Text>
         </Pressable>
