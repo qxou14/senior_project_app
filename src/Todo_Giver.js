@@ -38,6 +38,7 @@ export default function Todo_Giver({ navigation }) {
     db.collection("Todo")
       .doc(time)
       .set({
+        username: auth.currentUser.email,
         Action: action,
         Time: time,
         check: false,
