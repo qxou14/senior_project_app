@@ -16,7 +16,9 @@ export default function Todo_Giver({ navigation }) {
   const [action, setAction] = useState("");
 
   useEffect(() => {
-    const ref = db.collection("Todo");
+    const ref = db
+      .collection("Todo")
+      .where("username", "==", auth.currentUser.email);
     ref.onSnapshot((query) => {
       const objs = [];
 
@@ -70,6 +72,7 @@ export default function Todo_Giver({ navigation }) {
     // console.log(!original);
     // console.log("------");
     db.collection("Todo").doc(id).set({
+      username: auth.currentUser.email,
       Action: action,
       Time: time,
       check: !original,
