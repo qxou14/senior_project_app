@@ -1,7 +1,16 @@
 import { auth, db } from "../firebase";
-import { StyleSheet, View, Text, FlatList, Pressable } from "react-native";
+import { StyleSheet, View, Text, FlatList, Pressable, Dimensions,ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import Checkbox from "expo-checkbox";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Foundation from 'react-native-vector-icons/Foundation';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
+
+
+Foundation.loadFont();
+MaterialIcons.loadFont();
+const disensions = Dimensions.get('screen');
 
 export default function Todo({ navigation }) {
   const [Item, setItem] = useState([]);
@@ -37,62 +46,91 @@ export default function Todo({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
-      {
-        <FlatList
-          data={Item}
-          renderItem={({ item }) => (
-            <Text style={styles.item} key={item.id}>
-              <Pressable
-                onPress={() => {
-                  check_box(item.key, item.check, item.Action, item.Time);
-                }}
-              >
-                <Checkbox disabled value={item.check} />
-              </Pressable>
-              {item.Action}
-              {item.key}
-            </Text>
-          )}
-        />
-      }
-    </View>
+
+
+      <View style={styles.container}>
+        {
+          
+
+          <View style={styles.topContainer}> 
+
+
+          <Foundation name= "calendar" size = {56} style={styles.calendar} />
+
+          <View style={styles.dataWrapper}>
+
+            <MaterialIcons name="keyboard-arrow-left" size = {46}/>
+            <Text style= {styles.dateStyle}>March 3 2022</Text>
+            <MaterialIcons name="keyboard-arrow-right" size = {46}/>
+
+          </View>
+
+          <ScrollView style = {styles.todoList}>
+
+          <FlatList
+              data={Item}
+
+              renderItem={({ item }) => (
+                <Text style={styles.item} key={item.id}>
+
+                  <Pressable
+                    onPress={() => {
+                      check_box(item.key, item.check, item.Action, item.Time);
+                    }}
+                  >
+                    <Checkbox disabled value={item.check} />
+                  </Pressable>
+
+                  {item.Action}
+                  {item.key}
+                </Text>
+              )}
+            />
+              
+          </ScrollView>
+
+        </View>
+        
+
+        }
+      </View>
   );
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#CCFFCC",
+    backgroundColor: "#E6EAE4",
     alignItems: "center",
-    justifyContent: "center",
     padding: 0,
   },
 
-  logo: {
-    width: 200,
-    height: 200,
+  topContainer:{
+    
+    height : disensions.height / 4 ,
+    width : disensions.width,
+    alignContent: 'center',
+    justifyContent : 'center',
   },
 
-  title: {
-    color: "#0081A7",
-    fontSize: 40,
-    fontWeight: "bold",
-    paddingBottom: 60,
-  },
+  dataWrapper:{
+    flexDirection : 'row',
+    alignItems : 'center',
+    justifyContent : 'center',
+    
+  },  
 
-  button: {
-    alignItems: "center",
-    backgroundColor: "#5DB075",
-    paddingVertical: 20,
-    paddingHorizontal: 40,
-    borderRadius: 100,
-    marginBottom: 20,
-  },
+  dateStyle : {
+    fontWeight :"bold",
+    fontSize : 30 , 
 
-  buttonText: {
-    fontSize: 25,
-    fontWeight: "bold",
-    letterSpacing: 0.25,
-    color: "white",
   },
+  calendar: {
+    textAlign : 'center',
+  },
+  todoList:{
+  }
+
+
+
+ 
 });
