@@ -45,57 +45,77 @@ export default function Todo({ navigation }) {
     });
   };
 
+
+  const ListItem = ({todo}) => {
+    return <View > 
+      <View style={styles.listItem}>
+        <View style = {styles.leftitem}>
+
+                <Pressable 
+                      onPress={() => {
+                        check_box(todo.key, todo.check, todo.Action, todo.Time);
+                      }}
+                    >
+                      <Checkbox style ={styles.checkbox} disabled value={todo.check} />
+                </Pressable>
+          <Text style = 
+          {{ fontWeight : 'bold', fontSize : 20,}}> 
+              {todo.key} </Text>
+
+
+        </View>
+
+        <View style = {styles.rightitem}>
+          <Text style = {{ fontWeight : 'bold',
+                                   fontSize : 20,  
+                    textDecorationLine : todo?.check ? 'line-through':'none', }}> 
+                     {todo.Action} </Text>
+          </View>
+      </View>
+    </View>
+  };
+
   return (
 
 
+
       <View style={styles.container}>
-        {
+        
           
 
           <View style={styles.topContainer}> 
 
-
-          <Foundation name= "calendar" size = {56} style={styles.calendar} />
-
-          <View style={styles.dataWrapper}>
-
-            <MaterialIcons name="keyboard-arrow-left" size = {46}/>
-            <Text style= {styles.dateStyle}>March 3 2022</Text>
-            <MaterialIcons name="keyboard-arrow-right" size = {46}/>
+            <Foundation name= "calendar" size = {56} style={styles.calendar} />
+            <View style={styles.dataWrapper}>
+              <MaterialIcons name="keyboard-arrow-left" size = {46}/>
+              <Text style= {styles.dateStyle}>March 3 2022</Text>
+              <MaterialIcons name="keyboard-arrow-right" size = {46}/>
+            </View>
 
           </View>
 
-          <ScrollView style = {styles.todoList}>
 
-          <FlatList
-              data={Item}
 
-              renderItem={({ item }) => (
-                <Text style={styles.item} key={item.id}>
+                <FlatList
 
-                  <Pressable
-                    onPress={() => {
-                      check_box(item.key, item.check, item.Action, item.Time);
-                    }}
-                  >
-                    <Checkbox disabled value={item.check} />
-                  </Pressable>
+                  data={Item}
+                  showsVerticalScrollIndicator= {false}
+                  contentContainerStyle = {{ paddingBottom : 100}}
 
-                  {item.Action}
-                  {item.key}
-                </Text>
-              )}
-            />
-              
-          </ScrollView>
-
-        </View>
+                  renderItem={({ item }) => <ListItem todo= {item} />}
+                  
+                  
+                />
+    
+       
         
 
-        }
+        
       </View>
   );
 }
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -127,8 +147,36 @@ const styles = StyleSheet.create({
   calendar: {
     textAlign : 'center',
   },
-  todoList:{
-  }
+
+  
+
+
+  listItem : {
+    padding:20,
+    backgroundColor : 'white',
+    flexDirection : 'row',
+    width : disensions.width * 0.9 ,
+    height : disensions.height / 10, 
+    alignItems : 'center',
+    justifyContent : 'space-between',
+
+    elevation : 12, 
+    borderRadius : 10 , 
+    marginVertical : 20 , 
+  },
+
+
+  leftitem : {
+    flexDirection : "row" ,
+    alignItems : 'center' , 
+  },
+
+  checkbox :{
+    width : 25,
+    height : 25 , 
+    borderRadius : 5,
+    marginRight : 15 ,
+  },
 
 
 
