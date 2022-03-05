@@ -12,6 +12,9 @@ import Todo_Giver from "../src/Todo_Giver";
 import C_Album from "../src/Caregiver_album";
 import Add_photo from "../src/Add_photo";
 import Profile_patient from "../src/Profile_patient";
+import PatientMaps from "../src/PatientMaps";
+import CaregiverMaps from "../src/CaregiverMaps";
+
 const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
@@ -22,6 +25,7 @@ const AppNavigator = () => {
         <Stack.Screen name="Patient SignIn" component={SignIn} />
         <Stack.Screen name="CareGiver SignIn" component={SignInGiver} />
         <Stack.Screen name="Register" component={Register} />
+
         <Stack.Screen
           name="Patient Content"
           component={Patient_content}
@@ -38,6 +42,16 @@ const AppNavigator = () => {
         <Stack.Screen name="C_Album" component={C_Album} />
         <Stack.Screen name="Add_photo" component={Add_photo} />
         <Stack.Screen name="Profile_patient" component={Profile_patient} />
+
+        <Stack.Screen name="PatientMaps" 
+                      component = {PatientMaps}
+                      options = {{ headerShown: false }} 
+        />
+        <Stack.Screen name="CaregiverMaps" 
+                      component = {CaregiverMaps}
+                      options = {{ headerShown: false }} 
+        />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
