@@ -1,29 +1,45 @@
- <SafeAreaView>
+<View style={styles.inputView}>
+        <TextInput
+          style={styles.TextInput}
+          placeholder="Time"
+          placeholderTextColor="green"
+          onChangeText={(time) => setTime(time)}
+        />
+      </View>
 
-          <View style={styles.topContainer}> 
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.TextInput}
+          placeholder="Action"
+          placeholderTextColor="green"
+          onChangeText={(action) => setAction(action)}
+        />
+      </View>
+      <Pressable style={styles.button} onPress={add_info}>
+        <Text style={styles.buttonText}>Add</Text>
+      </Pressable>
 
-            <Text>   February 16 2022</Text>
-
-          </View>
-
-            <FlatList
-              data={Item}
-
-              renderItem={({ item }) => (
-                <Text style={styles.item} key={item.id}>
-
-                  <Pressable
-                    onPress={() => {
-                      check_box(item.key, item.check, item.Action, item.Time);
-                    }}
-                  >
-                    <Checkbox disabled value={item.check} />
-                  </Pressable>
-
-                  {item.Action}
-                  {item.key}
-                </Text>
-              )}
-            />
-
-        </SafeAreaView>
+      <FlatList
+        data={Item}
+        renderItem={({ item }) => (
+          <Text style={styles.item} key={item.key}>
+            <Pressable
+              onPress={() => {
+                check_box(item.key, item.check, item.Action, item.Time);
+              }}
+            >
+              <Checkbox disabled value={item.check} />
+            </Pressable>
+            {item.Action}
+            {item.key}
+            <Pressable
+              style={styles.button}
+              onPress={() => {
+                delete_info(item.key);
+              }}
+            >
+              <Text style={styles.buttonText}>Delete</Text>
+            </Pressable>
+          </Text>
+        )}
+      />
