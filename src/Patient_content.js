@@ -68,6 +68,20 @@ export default function Patient_content({ navigation }) {
           />
           <Text style={styles.buttonText}>Brain Game</Text>
         </Pressable>
+      </View>
+
+      <View style={styles.SecondLayer}>
+        <Pressable
+          style={styles.button}
+          onPress={() => console.log("From Register")}
+        >
+          <MaterialCommunityIcons
+            name="brain"
+            size={50}
+            onPress={handleSignOut}
+          />
+          <Text style={styles.buttonText}>Brain Game</Text>
+        </Pressable>
 
         <Pressable
           style={styles.button}
@@ -96,6 +110,14 @@ export default function Patient_content({ navigation }) {
           <Text style={styles.buttonText}>Emergency</Text>
         </Pressable>
       </View>
+
+      <Pressable
+        style={styles.button}
+        onPress={() => console.log("From Register")}
+      >
+        <MaterialCommunityIcons name="medical-bag" color="red" size={50} />
+        <Text style={styles.buttonText}>Emergency</Text>
+      </Pressable>
     </View>
   );
 }
