@@ -53,9 +53,9 @@ export default function Caregiver_content({ navigation }) {
 
         <Pressable
           style={styles.button}
-          onPress={() => console.log("From Register")}
+          onPress={() => navigation.navigate("CaregiverMaps")}
         >
-          <Text style={styles.buttonText}>Map</Text>
+          <Text style={styles.buttonText}>Maps</Text>
         </Pressable>
       </View>
 
@@ -96,8 +96,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 70,
     marginTop: 180,
-    marginLeft: 3,
-    marginRight: 3,
+    marginLeft: 15,
+    marginRight: 15,
   },
 
   SecondLayer: {
@@ -105,8 +105,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 70,
-    marginLeft: 3,
-    marginRight: 3,
+    marginLeft: 15,
+    marginRight: 15,
   },
 
   button: {
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     height: 125,
     width: "46%",
     justifyContent: "center",
-    borderRadius: 50,
+    borderRadius: 35,
   },
 
   buttonText: {
