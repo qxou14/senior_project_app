@@ -122,13 +122,3 @@ const styles = StyleSheet.create({
 });
 
 export default PMaps;
-
-/*
-<MapViewDirections
-            origin = {this.state.region}
-            destination = {"The City College of New York"}
-            apikey = {'AIzaSyByIGOTOpqFH5idrExMSefbQk21s0FAfvo'} 
-            strokeWidth = {4}
-            strokeColor = 'green'
-          />
-          */
