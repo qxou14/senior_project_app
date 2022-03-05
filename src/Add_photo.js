@@ -79,7 +79,6 @@ export default function Add_photo({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text>hey siri</Text>
       <Pressable style={styles.button} onPress={select_image}>
         <Text style={styles.buttonText}>Add</Text>
       </Pressable>
@@ -118,6 +117,7 @@ const styles = StyleSheet.create({
   },
 
   button: {
+    marginTop: 20,
     alignItems: "center",
     backgroundColor: "#5DB075",
     paddingVertical: 20,
