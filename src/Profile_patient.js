@@ -7,9 +7,12 @@ import {
   SafeAreaView,
   TextInput,
   Pressable,
+  Dimensions,
 } from "react-native";
 import { clickProps } from "react-native-web/dist/cjs/modules/forwardedProps";
 import React, { useState, useEffect } from "react";
+
+const disensions = Dimensions.get("screen");
 
 export default function Profile_patient(props) {
   const [Street, setStreet] = useState("");
@@ -59,7 +62,12 @@ export default function Profile_patient(props) {
   };
   return (
     <View style={styles.container}>
-      <Text>profile</Text>
+      <View style={styles.topWrapper}>
+        <Text style={styles.title}>Profile</Text>
+
+        <Text style={styles.address}>{FullAddress}</Text>
+      </View>
+
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
@@ -104,10 +112,8 @@ export default function Profile_patient(props) {
           update_info(Street, State_locate, City, Zip);
         }}
       >
-        <Text style={styles.buttonText}>Update info</Text>
+        <Text style={styles.buttonText}>Update Info</Text>
       </Pressable>
-
-      <Text>{FullAddress}</Text>
     </View>
   );
 }
@@ -115,9 +121,25 @@ export default function Profile_patient(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#CCFFCC",
+    backgroundColor: "#c8d6c1",
     alignItems: "center",
     justifyContent: "center",
+  },
+  topWrapper: {
+    width: disensions.width,
+    height: disensions.height / 4,
+    alignItems: "center",
+  },
+
+  title: {
+    fontSize: 30,
+    fontWeight: "bold",
+    justifyContent: "center",
+    marginBottom: 30,
+  },
+
+  address: {
+    fontSize: 20,
   },
 
   inputView: {
@@ -130,5 +152,20 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     padding: 15,
+  },
+
+  button: {
+    alignItems: "center",
+    backgroundColor: "green",
+    borderRadius: 40,
+    width: disensions.width / 3,
+    height: disensions.height / 12,
+    justifyContent: "center",
+  },
+
+  buttonText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "white",
   },
 });
