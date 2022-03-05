@@ -12,7 +12,9 @@ import {
 export default function C_Album({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text>IN ALBUM</Text>
+      <View style={styles.topWrapper}>
+        <Text style={styles.title}>IN ALBUM</Text>
+      </View>
       <Pressable
         style={styles.button}
         onPress={() => navigation.navigate("Add_photo")}
@@ -31,17 +33,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 0,
   },
-
-  logo: {
-    width: 200,
-    height: 200,
-  },
+  topWrapper: {},
 
   title: {
-    color: "#0081A7",
-    fontSize: 40,
+    fontSize: 30,
     fontWeight: "bold",
-    paddingBottom: 60,
+    justifyContent: "center",
+    marginBottom: 30,
   },
 
   button: {
