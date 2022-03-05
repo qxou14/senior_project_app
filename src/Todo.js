@@ -1,13 +1,30 @@
 import { auth, db } from "../firebase";
-import { StyleSheet, View, Text, FlatList, Pressable } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  FlatList,
+  Pressable,
+  Dimensions,
+  ScrollView,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import Checkbox from "expo-checkbox";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Foundation from "react-native-vector-icons/Foundation";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+
+Foundation.loadFont();
+MaterialIcons.loadFont();
+const disensions = Dimensions.get("screen");
 
 export default function Todo({ navigation }) {
   const [Item, setItem] = useState([]);
 
   useEffect(() => {
-    const ref = db.collection("Todo");
+    const ref = db
+      .collection("Todo")
+      .where("username", "==", auth.currentUser.email);
     ref.onSnapshot((query) => {
       const objs = [];
 
@@ -30,69 +47,119 @@ export default function Todo({ navigation }) {
     // console.log(!original);
     // console.log("------");
     db.collection("Todo").doc(id).set({
+      username: auth.currentUser.email,
       Action: action,
       Time: time,
       check: !original,
     });
   };
 
+  const ListItem = ({ todo }) => {
+    return (
+      <View>
+        <View style={styles.listItem}>
+          <View style={styles.leftitem}>
+            <Pressable
+              onPress={() => {
+                check_box(todo.key, todo.check, todo.Action, todo.Time);
+              }}
+            >
+              <Checkbox style={styles.checkbox} disabled value={todo.check} />
+            </Pressable>
+            <Text style={{ fontWeight: "bold", fontSize: 20 }}>
+              {todo.key}{" "}
+            </Text>
+          </View>
+
+          <View style={styles.rightitem}>
+            <Text
+              style={{
+                fontWeight: "bold",
+                fontSize: 20,
+                textDecorationLine: todo?.check ? "line-through" : "none",
+              }}
+            >
+              {todo.Action}{" "}
+            </Text>
+          </View>
+        </View>
+      </View>
+    );
+  };
+
   return (
     <View style={styles.container}>
-      {
-        <FlatList
-          data={Item}
-          renderItem={({ item }) => (
-            <Text style={styles.item} key={item.id}>
-              <Pressable
-                onPress={() => {
-                  check_box(item.key, item.check, item.Action, item.Time);
-                }}
-              >
-                <Checkbox disabled value={item.check} />
-              </Pressable>
-              {item.Action}
-              {item.key}
-            </Text>
-          )}
-        />
-      }
+      <View style={styles.topContainer}>
+        <Foundation name="calendar" size={56} style={styles.calendar} />
+        <View style={styles.dataWrapper}>
+          <MaterialIcons name="keyboard-arrow-left" size={46} />
+          <Text style={styles.dateStyle}>March 3 2022</Text>
+          <MaterialIcons name="keyboard-arrow-right" size={46} />
+        </View>
+      </View>
+
+      <FlatList
+        data={Item}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 100 }}
+        renderItem={({ item }) => <ListItem todo={item} />}
+      />
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#CCFFCC",
+    backgroundColor: "#E6EAE4",
     alignItems: "center",
-    justifyContent: "center",
     padding: 0,
   },
 
-  logo: {
-    width: 200,
-    height: 200,
+  topContainer: {
+    height: disensions.height / 4,
+    width: disensions.width,
+    alignContent: "center",
+    justifyContent: "center",
   },
 
-  title: {
-    color: "#0081A7",
-    fontSize: 40,
-    fontWeight: "bold",
-    paddingBottom: 60,
-  },
-
-  button: {
+  dataWrapper: {
+    flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#5DB075",
-    paddingVertical: 20,
-    paddingHorizontal: 40,
-    borderRadius: 100,
-    marginBottom: 20,
+    justifyContent: "center",
   },
 
-  buttonText: {
-    fontSize: 25,
+  dateStyle: {
     fontWeight: "bold",
-    letterSpacing: 0.25,
-    color: "white",
+    fontSize: 30,
+  },
+  calendar: {
+    textAlign: "center",
+  },
+
+  listItem: {
+    padding: 20,
+    backgroundColor: "white",
+    flexDirection: "row",
+    width: disensions.width * 0.9,
+    height: disensions.height / 10,
+    alignItems: "center",
+    justifyContent: "space-between",
+
+    elevation: 12,
+    borderRadius: 10,
+    marginVertical: 20,
+  },
+
+  leftitem: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+
+  checkbox: {
+    width: 25,
+    height: 25,
+    borderRadius: 5,
+    marginRight: 15,
   },
 });
