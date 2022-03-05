@@ -51,6 +51,11 @@ export default function Profile_patient(props) {
       .catch((error) => {
         console.log("Error: ", error);
       });
+
+    setStreet("");
+    setStateLocate("");
+    setCity("");
+    setZip("");
   };
   return (
     <View style={styles.container}>
@@ -61,6 +66,7 @@ export default function Profile_patient(props) {
           placeholder="Street Name"
           placeholderTextColor="green"
           onChangeText={(name) => setStreet(name)}
+          value={Street}
         />
       </View>
       <View style={styles.inputView}>
@@ -69,6 +75,7 @@ export default function Profile_patient(props) {
           placeholder="Zip Code"
           placeholderTextColor="green"
           onChangeText={(zip) => setZip(zip)}
+          value={Zip}
         />
       </View>
       <View style={styles.inputView}>
@@ -77,6 +84,7 @@ export default function Profile_patient(props) {
           placeholder="State"
           placeholderTextColor="green"
           onChangeText={(s) => setStateLocate(s)}
+          value={State_locate}
         />
       </View>
       <View style={styles.inputView}>
@@ -85,12 +93,13 @@ export default function Profile_patient(props) {
           placeholder="City"
           placeholderTextColor="green"
           onChangeText={(city) => setCity(city)}
+          value={City}
         />
       </View>
 
       <Pressable
         style={styles.button}
-        title="Register"
+        title=""
         onPress={() => {
           update_info(Street, State_locate, City, Zip);
         }}
