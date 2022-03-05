@@ -53,9 +53,9 @@ export default function Caregiver_content({ navigation }) {
 
         <Pressable
           style={styles.button}
-          onPress={() => console.log("From Register")}
+          onPress={() => navigation.navigate("CaregiverMaps")}
         >
-          <Text style={styles.buttonText}>Map</Text>
+          <Text style={styles.buttonText}>Maps</Text>
         </Pressable>
       </View>
 
@@ -71,7 +71,7 @@ export default function Caregiver_content({ navigation }) {
           style={styles.button}
           onPress={() => navigation.navigate("Todo_Giver")}
         >
-          <Text style={styles.buttonText}>Daily Schedule</Text>
+          <Text style={styles.buttonText}>Scheduler</Text>
         </Pressable>
       </View>
     </View>
@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#E6EAE4",
   },
+
   headerWrapper: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -96,8 +97,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 70,
     marginTop: 180,
-    marginLeft: 3,
-    marginRight: 3,
+    marginLeft: 15,
+    marginRight: 15,
   },
 
   SecondLayer: {
@@ -105,8 +106,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 70,
-    marginLeft: 3,
-    marginRight: 3,
+    marginLeft: 15,
+    marginRight: 15,
   },
 
   button: {
@@ -115,12 +116,12 @@ const styles = StyleSheet.create({
     height: 125,
     width: "46%",
     justifyContent: "center",
-    borderRadius: 50,
+    borderRadius: 35,
   },
 
   buttonText: {
     marginTop: 5,
-    fontSize: 25,
+    fontSize: 27,
     fontWeight: "bold",
     letterSpacing: 0.25,
     color: "black",
