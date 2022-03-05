@@ -9,7 +9,7 @@ import {
   Pressable,
 } from "react-native";
 import { clickProps } from "react-native-web/dist/cjs/modules/forwardedProps";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Profile_patient(props) {
   const [Street, setStreet] = useState("");
@@ -17,6 +17,21 @@ export default function Profile_patient(props) {
   const [City, setCity] = useState("");
   const [Zip, setZip] = useState(0);
   const [FullAddress, setAddress] = useState("");
+
+  useEffect(() => {
+    const ref = db
+      .collection("profile")
+      .where("username", "==", auth.currentUser.email);
+    ref.onSnapshot((query) => {
+      const objs = [];
+
+      query.forEach((doc) => {
+        if (doc.data().Full_Address !== "") {
+          setAddress(doc.data().Full_Address);
+        }
+      });
+    });
+  }, []);
 
   const update_info = (Street, State_locate, City, Zip) => {
     let full = Street + " , " + City + " , " + State_locate + " , " + Zip;
@@ -82,6 +97,8 @@ export default function Profile_patient(props) {
       >
         <Text style={styles.buttonText}>Update info</Text>
       </Pressable>
+
+      <Text>{FullAddress}</Text>
     </View>
   );
 }
