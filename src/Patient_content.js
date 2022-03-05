@@ -66,7 +66,7 @@ export default function Patient_content({ navigation }) {
             size={50}
             onPress={handleSignOut}
           />
-          <Text style={styles.buttonText}>Brain Games</Text>
+          <Text style={styles.buttonText}>Brain Game</Text>
         </Pressable>
 
         <Pressable
@@ -74,18 +74,18 @@ export default function Patient_content({ navigation }) {
           onPress={() => console.log("From Register")}
         >
           <FontAwesome name="calendar" size={50} />
-          <Text style={styles.buttonText}>Reminders</Text>
+          <Text style={styles.buttonText}>Reminder</Text>
         </Pressable>
       </View>
 
       <View style={styles.ThirdLayer}>
         <Pressable
           style={styles.button}
-          onPress={() => navigation.navigate("PatientMaps")}
+          onPress={() => console.log("From Register")}
         >
           <FontAwesome name="map" size={50} />
 
-          <Text style={styles.buttonText}>Maps</Text>
+          <Text style={styles.buttonText}>Map</Text>
         </Pressable>
 
         <Pressable
@@ -117,8 +117,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 70,
     marginTop: 20,
-    marginLeft: 15,
-    marginRight: 15,
+    marginLeft: 3,
+    marginRight: 3,
   },
 
   SecondLayer: {
@@ -126,16 +126,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 70,
-    marginLeft: 15,
-    marginRight: 15,
+    marginLeft: 3,
+    marginRight: 3,
   },
 
   ThirdLayer: {
     flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: "space-between",
-    marginLeft: 15,
-    marginRight: 15,
+    marginLeft: 3,
+    marginRight: 3,
   },
 
   button: {
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     height: 125,
     width: "46%",
     justifyContent: "center",
-    borderRadius: 35,
+    borderRadius: 50,
   },
 
   buttonText: {
