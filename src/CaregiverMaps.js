@@ -4,7 +4,7 @@ import MapViewDirections from 'react-native-maps-directions';
 import { StyleSheet, View, Dimensions, Pressable, Text} from 'react-native';
 import { useEffect, useState, Component } from "react";
 import * as Location from 'expo-location';
-import * as Permissions from "expo-permissions"
+//import * as Permissions from "expo-permissions"
 import { auth, db } from "../firebase";
 
 const LOCATION_TASK_NAME = "background-location-task";
@@ -27,7 +27,6 @@ class CMaps extends Component {
           latitudeDelta: LATITUDE_DELTA,
           longitudeDelta: LONGITUDE_DELTA,
       },
-      error: '',
     };
   }
 
@@ -36,11 +35,16 @@ class CMaps extends Component {
   }
 
   animateToRegion(region) {
-    this.map.animateToRegion(region, 2000);  
+    this.showCallout()
+    this.map.animateToRegion(region, 2800); 
+  }
+
+  showCallout() {
+    this.pmarker.showCallout();  
   }
 
   retrieveData() {
-    const ref = db.collection('Locations').where("key","==","mohfuj234@gmail.com");
+    const ref = db.collection('Locations').where("key","==", auth.currentUser.email);
 
     ref.onSnapshot((query) => {
         const objs = [];
@@ -53,18 +57,17 @@ class CMaps extends Component {
             email: doc.data().email,
           });
         });
-
+        
         let patientCoords = {latitude: objs[0].latitude, longitude: objs[0].longitude}
         let patientRegion = {latitude: objs[0].latitude, longitude: objs[0].longitude, latitudeDelta: .009, longitudeDelta: .007}
         //console.log(patientCoords)
         this.setState({patientCoord : patientCoords}, function() {
-            console.log(this.state.patientCoord)
+            //console.log(this.state.patientCoord)
         })
 
         this.setState({patientRegion : patientRegion}, function() {
-            console.log(this.state.patientRegion)
+            //console.log(this.state.patientRegion)
         })
-        //console.log(this.state.patientCoord)
     })  
   }
 
@@ -83,7 +86,6 @@ class CMaps extends Component {
       },
       newLocation => {
         let { coords } = newLocation;
-        //console.log(coords);
         let region = {
           latitude: coords.latitude,
           longitude: coords.longitude,
@@ -92,14 +94,13 @@ class CMaps extends Component {
         };
         this.setState({ region: region });
       },
-      error => console.log(error)
     );
     return this.location;
   };
 
-  async componentWillMount() {
+  async componentDidMount() {
     // Asking for device location permission
-    const { status } = await Permissions.askAsync(Permissions.LOCATION);
+    const { status } = await Location.requestForegroundPermissionsAsync();
     //const [pCoord, setPcoord] = useState([]);
 
     if (status === "granted") {
@@ -124,6 +125,7 @@ class CMaps extends Component {
           
           <Marker
             coordinate = { this.state.patientCoord }
+            ref={pmarker => { this.pmarker = pmarker; } }
             title = { 'Patients Location' }
           />
 
@@ -178,26 +180,6 @@ const styles = StyleSheet.create({
 });
 
 export default CMaps;
-
-/*
-export default function PMaps() {
-    const [location, setLocation] = useState(null);
-    const [errorMsg, setErrorMsg] = useState(null);
-
-
-    return (
-        <View style = {styles.container}>
-            <MapView style = {styles.maps}
-                     initialRegion = {{
-                         latitude: location.coords.latitude,
-                         longitude: location.coords.longitude,
-                         latitudeDelta: 0.0922,
-                         longitudeDelta: 0.0421,
-                     }} />
-        </View>
-    );
-}
-*/
 
 /*
             <Pressable
