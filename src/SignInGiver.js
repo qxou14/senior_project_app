@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, Pressable, Text, TextInput } from "react-native";
+import { StyleSheet, View, Pressable, Text, TextInput, Image } from "react-native";
 import Input_button from "./Input_button";
 import { useEffect, useState } from "react";
 import { auth } from "../firebase";
@@ -47,6 +47,12 @@ export default function SignIn({ navigation }) {
 
   return (
     <View style={styles.container}>
+
+      <View style = {styles.topContainer}>
+        <Image style={styles.logo} source={require("../assets/logo.png")}></Image>
+        <Text style={styles.title}>Caregiver Sign-In</Text>
+      </View>
+
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
@@ -91,16 +97,34 @@ export default function SignIn({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  
+  topContainer: {
+    top: "10%",
+    alignItems: "center",
+  },
+  
+  title: {
+    color: "#0081A7",
+    fontSize: 25,
+    fontWeight: "700",
+    paddingBottom: 60,
+    marginBottom: 50,
+  },
+
+  logo: {
+    width: 150,
+    height: 150,
+  },
+  
   container: {
     flex: 1,
     backgroundColor: "#CCFFCC",
     alignItems: "center",
-    justifyContent: "center",
   },
 
   bottomContainer: {
-    position: "absolute",
-    top: 450,
+    position: "relative",
+    top: "5%",
   },
 
   inputView: {
@@ -120,6 +144,7 @@ const styles = StyleSheet.create({
     height: 50,
     flex: 1,
     padding: 10,
+    fontSize: 15,
   },
 
   button: {

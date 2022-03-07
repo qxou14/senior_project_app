@@ -70,7 +70,7 @@ class PMaps extends Component {
           ref={map => {
             this.map = map;
           }}>
-          
+      
           </MapView>
           
           <View
