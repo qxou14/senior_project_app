@@ -42,15 +42,15 @@ export default function Patient_content({ navigation }) {
 
       <View style={styles.firstLayer}>
         <Pressable
-          style={styles.button}
+          style={styles.buttonSchedule}
           onPress={() => navigation.navigate("Todo")}
         >
           <FontAwesome name="list-alt" size={50} />
 
-          <Text style={styles.buttonText}>Daily Schedule</Text>
+          <Text style={styles.buttonText}>Schedule</Text>
         </Pressable>
 
-        <Pressable style={styles.button} onPress={() => console.log("album")}>
+        <Pressable style={styles.buttonAlbums} onPress={() => console.log("album")}>
           <FontAwesome name="file-picture-o" size={50} />
           <Text style={styles.buttonText}>Albums</Text>
         </Pressable>
@@ -58,15 +58,15 @@ export default function Patient_content({ navigation }) {
 
       <View style={styles.SecondLayer}>
         <Pressable
-          style={styles.button}
+          style={styles.buttonGames}
           onPress={() => console.log("From Register")}
         >
           <MaterialCommunityIcons name="brain" size={50} />
-          <Text style={styles.buttonText}>Brain Games</Text>
+          <Text style={styles.buttonText}>Games</Text>
         </Pressable>
 
         <Pressable
-          style={styles.button}
+          style={styles.buttonReminders}
           onPress={() => console.log("From Register")}
         >
           <FontAwesome name="calendar" size={50} />
@@ -76,7 +76,7 @@ export default function Patient_content({ navigation }) {
 
       <View style={styles.ThirdLayer}>
         <Pressable
-          style={styles.button}
+          style={styles.buttonMaps}
           onPress={() => navigation.navigate("PatientMaps")}
         >
           <FontAwesome name="map" size={50} />
@@ -85,7 +85,7 @@ export default function Patient_content({ navigation }) {
         </Pressable>
 
         <Pressable
-          style={styles.button}
+          style={styles.buttonEmergency}
           onPress={() => console.log("From Register")}
         >
           <MaterialCommunityIcons name="medical-bag" color="red" size={50} />
@@ -99,20 +99,21 @@ export default function Patient_content({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#E6EAE4",
+    backgroundColor: "#FDFDF7",
   },
   headerWrapper: {
     flexDirection: "row",
     justifyContent: "space-between",
     paddingTop: 20,
     alignItems: "center",
+    paddingHorizontal: 40,
   },
   firstLayer: {
     flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 70,
-    marginTop: 20,
+    marginTop: 45,
     marginLeft: 15,
     marginRight: 15,
   },
@@ -141,6 +142,72 @@ const styles = StyleSheet.create({
     width: "46%",
     justifyContent: "center",
     borderRadius: 35,
+  },
+
+  buttonSchedule: {
+    alignItems: "center",
+    backgroundColor: "#CCFFCC",
+    height: 125,
+    width: "46%",
+    justifyContent: "center",
+    borderRadius: 30,
+    borderWidth:1,
+    borderColor: 'black',
+  },
+
+  buttonAlbums: {
+    alignItems: "center",
+    backgroundColor: "#FFFF9B",
+    height: 125,
+    width: "46%",
+    justifyContent: "center",
+    borderRadius: 30,
+    borderWidth:1,
+    borderColor: 'black',
+  },
+
+  buttonGames: {
+    alignItems: "center",
+    backgroundColor: "#69FFD2",
+    height: 125,
+    width: "46%",
+    justifyContent: "center",
+    borderRadius: 30,
+    borderWidth:1,
+    borderColor: 'black',
+  },
+
+  buttonReminders: {
+    alignItems: "center",
+    backgroundColor: "#ACA4FF",
+    height: 125,
+    width: "46%",
+    justifyContent: "center",
+    borderRadius: 30,
+    borderWidth:1,
+    borderColor: 'black',
+  },
+
+  buttonMaps: {
+    alignItems: "center",
+    backgroundColor: "#A5DAFE",
+    height: 125,
+    width: "46%",
+    justifyContent: "center",
+    borderRadius: 30,
+    borderWidth:1,
+    borderColor: 'black',
+  },
+
+  buttonEmergency: {
+    alignItems: "center",
+    backgroundColor: "#68D8E7",
+    height: 125,
+    width: "46%",
+    justifyContent: "center",
+    borderRadius: 30,
+    borderWidth:1,
+    borderColor: 'black',
   },
 
   buttonText: {

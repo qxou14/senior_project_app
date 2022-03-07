@@ -43,15 +43,8 @@ const AppNavigator = () => {
         <Stack.Screen name="Add_photo" component={Add_photo} />
         <Stack.Screen name="Profile_patient" component={Profile_patient} />
 
-        <Stack.Screen name="PatientMaps" 
-                      component = {PatientMaps}
-                      options = {{ headerShown: false }} 
-        />
-        <Stack.Screen name="CaregiverMaps" 
-                      component = {CaregiverMaps}
-                      options = {{ headerShown: false }} 
-        />
-
+        <Stack.Screen name="PatientMaps" component={PatientMaps} />
+        <Stack.Screen name="CaregiverMaps" component={CaregiverMaps} />
       </Stack.Navigator>
     </NavigationContainer>
   );

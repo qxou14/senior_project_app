@@ -64,6 +64,7 @@ export default function Profile_patient(props) {
     <View style={styles.container}>
       <View style={styles.topWrapper}>
         <Text style={styles.title}>Profile</Text>
+        <Text style={styles.subtitle}>Patient Address Info.</Text>
 
         <Text style={styles.address}>{FullAddress}</Text>
       </View>
@@ -133,6 +134,13 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: 30,
+    fontWeight: "bold",
+    justifyContent: "center",
+    marginBottom: 30,
+  },
+
+  subtitle: {
+    fontSize: 15,
     fontWeight: "bold",
     justifyContent: "center",
     marginBottom: 30,

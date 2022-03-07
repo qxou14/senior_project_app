@@ -11,6 +11,7 @@ import { auth } from "../firebase";
 import Input_button from "./Input_button";
 import Feather from "react-native-vector-icons/Feather";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 Feather.loadFont();
 MaterialCommunityIcons.loadFont();
@@ -45,33 +46,37 @@ export default function Caregiver_content({ navigation }) {
 
       <View style={styles.firstLayer}>
         <Pressable
-          style={styles.button}
+          style={styles.buttonAlbum}
           onPress={() => navigation.navigate("C_Album")}
         >
+          <FontAwesome name="file-picture-o" size={50} />
           <Text style={styles.buttonText}>Album</Text>
         </Pressable>
 
         <Pressable
-          style={styles.button}
+          style={styles.buttonMaps}
           onPress={() => navigation.navigate("CaregiverMaps")}
         >
+          <FontAwesome name="map" size={50} />
           <Text style={styles.buttonText}>Maps</Text>
         </Pressable>
       </View>
 
       <View style={styles.SecondLayer}>
         <Pressable
-          style={styles.button}
+          style={styles.buttonFeedback}
           onPress={() => console.log("From Register")}
         >
+          <FontAwesome name="comment" size={50} />
           <Text style={styles.buttonText}>Feedback</Text>
         </Pressable>
 
         <Pressable
-          style={styles.button}
+          style={styles.buttonSchedule}
           onPress={() => navigation.navigate("Todo_Giver")}
         >
-          <Text style={styles.buttonText}>Daily Schedule</Text>
+          <FontAwesome name="list-alt" size={50} />
+          <Text style={styles.buttonText}>Scheduler</Text>
         </Pressable>
       </View>
     </View>
@@ -86,8 +91,9 @@ const styles = StyleSheet.create({
   headerWrapper: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingTop: 20,
+    paddingTop: 40,
     alignItems: "center",
+    paddingHorizontal: 40,
   },
 
   firstLayer: {
@@ -115,7 +121,53 @@ const styles = StyleSheet.create({
     height: 125,
     width: "46%",
     justifyContent: "center",
-    borderRadius: 35,
+    borderRadius: 30,
+    borderWidth: 1,
+    borderColor: "black",
+  },
+
+  buttonAlbum: {
+    alignItems: "center",
+    backgroundColor: "#FFFF9B",
+    height: 125,
+    width: "46%",
+    justifyContent: "center",
+    borderRadius: 30,
+    borderWidth: 1,
+    borderColor: "black",
+  },
+
+  buttonMaps: {
+    alignItems: "center",
+    backgroundColor: "#A5DAFE",
+    height: 125,
+    width: "46%",
+    justifyContent: "center",
+    borderRadius: 30,
+    borderWidth: 1,
+    borderColor: "black",
+  },
+
+  buttonFeedback: {
+    alignItems: "center",
+    backgroundColor: "#FFDE6D",
+    height: 125,
+    width: "46%",
+    justifyContent: "center",
+    borderRadius: 30,
+    borderWidth: 1,
+    borderColor: "black",
+  },
+
+  buttonSchedule: {
+    alignItems: "center",
+    backgroundColor: "#CCFFCC",
+    height: 125,
+    width: "46%",
+    justifyContent: "center",
+    borderRadius: 30,
+    borderWidth: 1,
+    borderColor: "black",
   },
 
   buttonText: {
