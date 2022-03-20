@@ -14,6 +14,7 @@ import Add_photo from "../src/Add_photo";
 import Profile_patient from "../src/Profile_patient";
 import PatientMaps from "../src/PatientMaps";
 import CaregiverMaps from "../src/CaregiverMaps";
+import C_question from "../src/caregiver_game_question";
 
 const Stack = createNativeStackNavigator();
 
@@ -45,6 +46,8 @@ const AppNavigator = () => {
 
         <Stack.Screen name="PatientMaps" component={PatientMaps} />
         <Stack.Screen name="CaregiverMaps" component={CaregiverMaps} />
+
+        <Stack.Screen name="question" component={C_question} />
       </Stack.Navigator>
     </NavigationContainer>
   );

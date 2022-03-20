@@ -78,6 +78,11 @@ export default function Caregiver_content({ navigation }) {
           <FontAwesome name="list-alt" size={50} />
           <Text style={styles.buttonText}>Scheduler</Text>
         </Pressable>
+
+        <Pressable onPress={() => navigation.navigate("question")}>
+          <FontAwesome name="list-alt" size={50} />
+          <Text style={styles.buttonText}>question</Text>
+        </Pressable>
       </View>
     </View>
   );
