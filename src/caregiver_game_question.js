@@ -8,26 +8,57 @@ import {
   Pressable,
   Text,
   Image,
+  FlatList,
 } from "react-native";
+import React, { useEffect, useState } from "react";
 
 export default function C_question({ navigation }) {
-  //   useEffect(() => {
-  //     const ref = db.collection("questions");
-  //     ref.onSnapshot((query) => {
-  //       const objs = [];
+  const [questions, setQuestions] = useState([]);
 
-  //       query.forEach((doc) => {
-  //         objs.push({
-  //           key: doc.id,
-  //           question: doc.data().question,
-  //         });
-  //       });
-  //       setItem(objs);
-  //     });
-  //   }, []);
+  useEffect(() => {
+    const ref = db.collection("questions");
+    ref.onSnapshot((query) => {
+      const objs = [];
+
+      query.forEach((doc) => {
+        objs.push({
+          key: doc.id,
+          Question: doc.data().question,
+        });
+      });
+      setQuestions(objs);
+    });
+  }, []);
+
+  const ListItem = ({ questions }) => {
+    return (
+      <View>
+        <View>
+          <View>
+            <Text
+              style={{
+                fontWeight: "bold",
+                fontSize: 20,
+              }}
+            >
+              {questions.Question}{" "}
+            </Text>
+          </View>
+        </View>
+      </View>
+    );
+  };
+
   return (
     <View style={styles.container}>
       <Text>This is for question</Text>
+      {console.log(questions)}
+      <FlatList
+        data={questions}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 100 }}
+        renderItem={({ item }) => <ListItem questions={item} />}
+      />
     </View>
   );
 }

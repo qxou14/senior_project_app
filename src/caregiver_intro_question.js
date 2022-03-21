@@ -37,9 +37,7 @@ export default function Question_intro({ navigation }) {
   }, []);
 
   const load = () => {
-    console.log("load question page");
-    console.log(ready);
-
+    //select which screen we are going to
     if (!ready) {
       navigation.navigate("question");
     } else {
