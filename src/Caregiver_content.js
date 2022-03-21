@@ -7,7 +7,7 @@ import {
   Text,
   SafeAreaView,
 } from "react-native";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import Input_button from "./Input_button";
 import Feather from "react-native-vector-icons/Feather";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -25,6 +25,55 @@ export default function Caregiver_content({ navigation }) {
         console.log("User signing out");
       })
       .catch((error) => alert(error.message));
+  };
+
+  const ready = () => {
+    db.collection("set_question")
+      .doc(auth.currentUser.email)
+      .set({
+        username: auth.currentUser.email,
+        ready: false,
+      })
+      .then(() => {
+        console.log("questions loaded  !");
+      })
+      .catch((error) => {
+        console.log("Error: ", error);
+      });
+  };
+
+  //go to question depends on whether it is ready or not
+  // if not ready, question template
+  // if ready, go to the question page
+  const goto_question = () => {
+    let select_choice = false;
+    let done = "";
+
+    let ref = db.collection("set_question").doc(auth.currentUser.email);
+    ref
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          console.log("Doc data: ", doc.data().ready);
+          select_choice = doc.data().ready;
+          done = "good";
+        } else {
+          console.log("no such document");
+        }
+      })
+      .catch((error) => {
+        console.log("error getting doc : ", error);
+        select_choice = false;
+      });
+
+    //select which screen we are going to.
+
+    console.log("Look here ", select_choice);
+    if (select_choice) {
+      navigation.navigate("question_ans");
+    } else {
+      navigation.navigate("question");
+    }
   };
 
   return (
@@ -77,6 +126,15 @@ export default function Caregiver_content({ navigation }) {
         >
           <FontAwesome name="list-alt" size={50} />
           <Text style={styles.buttonText}>Scheduler</Text>
+        </Pressable>
+
+        <Pressable onPress={() => navigation.navigate("intro")}>
+          <FontAwesome name="list-alt" size={50} />
+          <Text style={styles.buttonText}>question</Text>
+        </Pressable>
+
+        <Pressable onPress={ready}>
+          <Text style={styles.buttonText}>ready</Text>
         </Pressable>
       </View>
     </View>
