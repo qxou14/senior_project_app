@@ -127,8 +127,13 @@ export default function Caregiver_content({ navigation }) {
           <FontAwesome name="list-alt" size={50} />
           <Text style={styles.buttonText}>Scheduler</Text>
         </Pressable>
+      </View>
 
-        <Pressable onPress={() => navigation.navigate("intro")}>
+      <View style={styles.ThirdLayer}>
+        <Pressable
+          style={styles.buttonquestion}
+          onPress={() => navigation.navigate("intro")}
+        >
           <FontAwesome name="list-alt" size={50} />
           <Text style={styles.buttonText}>question</Text>
         </Pressable>
@@ -159,7 +164,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 70,
-    marginTop: 180,
+    marginTop: 140,
     marginLeft: 15,
     marginRight: 15,
   },
@@ -171,6 +176,10 @@ const styles = StyleSheet.create({
     marginBottom: 70,
     marginLeft: 15,
     marginRight: 15,
+  },
+
+  ThirdLayer: {
+    alignItems: "center",
   },
 
   button: {
@@ -235,5 +244,16 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: "black",
     textAlign: "center",
+  },
+
+  buttonquestion: {
+    alignItems: "center",
+    backgroundColor: "#CCFFCC",
+    height: 125,
+    width: "46%",
+    justifyContent: "center",
+    borderRadius: 30,
+    borderWidth: 1,
+    borderColor: "black",
   },
 });

@@ -17,6 +17,8 @@ import CaregiverMaps from "../src/CaregiverMaps";
 import C_question from "../src/caregiver_game_question";
 import C_question_ans from "../src/caregiver_game_question_ans";
 import Question_intro from "../src/caregiver_intro_question";
+import new_page from "../src/new_parent_1";
+import new_page2 from "../src/new_parent_2";
 
 const Stack = createNativeStackNavigator();
 
