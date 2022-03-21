@@ -15,6 +15,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { storageBucket } from "../keys";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ButtonItem from "./compnents/ButtonItem";
+import { useFonts } from "expo-font";
 
 Feather.loadFont();
 MaterialCommunityIcons.loadFont();
@@ -33,6 +34,13 @@ export default function Patient_content({ navigation }) {
       .catch((error) => alert(error.message));
   };
 
+  const [loaded] = useFonts({
+    Sans: require("../assets/fonts/OpenSans-Bold.ttf"),
+  });
+
+  if (!loaded) {
+    return null;
+  }
   return (
     <View style={styles.container}>
       <SafeAreaView>
@@ -162,5 +170,6 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: "black",
     textAlign: "center",
+    fontFamily: "Sans",
   },
 });
