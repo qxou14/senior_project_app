@@ -1,4 +1,12 @@
-import { StyleSheet, View, Button, Alert, Pressable, Text } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Button,
+  Alert,
+  Pressable,
+  Text,
+  Dimensions,
+} from "react-native";
 import { auth } from "../firebase";
 import Input_button from "./Input_button";
 import Feather from "react-native-vector-icons/Feather";
@@ -11,6 +19,8 @@ import ButtonItem from "./compnents/ButtonItem";
 Feather.loadFont();
 MaterialCommunityIcons.loadFont();
 FontAwesome.loadFont();
+
+const disensions = Dimensions.get("screen");
 
 export default function Patient_content({ navigation }) {
   const handleSignOut = () => {
@@ -45,54 +55,34 @@ export default function Patient_content({ navigation }) {
           style={styles.buttonSchedule}
           onPress={() => navigation.navigate("Todo")}
         >
-          <FontAwesome name="list-alt" size={50} />
-
+          <View style={styles.iconStyle}>
+            <FontAwesome name="list-alt" size={100} />
+          </View>
           <Text style={styles.buttonText}>Schedule</Text>
         </Pressable>
+      </View>
 
+      <View style={styles.firstLayer}>
         <Pressable
           style={styles.buttonAlbums}
           onPress={() => console.log("album")}
         >
-          <FontAwesome name="file-picture-o" size={50} />
+          <View style={styles.iconStyle}>
+            <FontAwesome name="file-picture-o" size={100} />
+          </View>
           <Text style={styles.buttonText}>Albums</Text>
         </Pressable>
       </View>
 
-      <View style={styles.SecondLayer}>
-        <Pressable
-          style={styles.buttonGames}
-          onPress={() => console.log("From Register")}
-        >
-          <MaterialCommunityIcons name="brain" size={50} />
-          <Text style={styles.buttonText}>Games</Text>
-        </Pressable>
-
-        <Pressable
-          style={styles.buttonReminders}
-          onPress={() => console.log("From Register")}
-        >
-          <FontAwesome name="calendar" size={50} />
-          <Text style={styles.buttonText}>Reminders</Text>
-        </Pressable>
-      </View>
-
-      <View style={styles.ThirdLayer}>
+      <View style={styles.firstLayer}>
         <Pressable
           style={styles.buttonMaps}
-          onPress={() => navigation.navigate("PatientMaps")}
+          onPress={() => console.log("PatientMaps")}
         >
-          <FontAwesome name="map" size={50} />
-
+          <View style={styles.iconStyle}>
+            <FontAwesome name="map" size={100} />
+          </View>
           <Text style={styles.buttonText}>Maps</Text>
-        </Pressable>
-
-        <Pressable
-          style={styles.buttonEmergency}
-          onPress={() => console.log("From Register")}
-        >
-          <MaterialCommunityIcons name="medical-bag" color="red" size={50} />
-          <Text style={styles.buttonText}>Emergency</Text>
         </Pressable>
       </View>
     </View>
@@ -114,28 +104,8 @@ const styles = StyleSheet.create({
   firstLayer: {
     flexWrap: "wrap",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     marginBottom: 70,
-    marginTop: 45,
-    marginLeft: 15,
-    marginRight: 15,
-  },
-
-  SecondLayer: {
-    flexWrap: "wrap",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 70,
-    marginLeft: 15,
-    marginRight: 15,
-  },
-
-  ThirdLayer: {
-    flexWrap: "wrap",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginLeft: 15,
-    marginRight: 15,
   },
 
   button: {
@@ -147,11 +117,16 @@ const styles = StyleSheet.create({
     borderRadius: 35,
   },
 
+  iconStyle: {
+    marginRight: 40,
+  },
+
   buttonSchedule: {
     alignItems: "center",
     backgroundColor: "#CCFFCC",
-    height: 125,
-    width: "46%",
+    height: disensions.height * 0.2,
+    width: disensions.width * 0.9,
+    flexDirection: "row",
     justifyContent: "center",
     borderRadius: 30,
     borderWidth: 1,
@@ -160,62 +135,32 @@ const styles = StyleSheet.create({
 
   buttonAlbums: {
     alignItems: "center",
+    backgroundColor: "#CCFFCC",
+    height: disensions.height * 0.2,
+    width: disensions.width * 0.9,
+    flexDirection: "row",
+    justifyContent: "center",
+    borderRadius: 30,
+    borderWidth: 1,
     backgroundColor: "#FFFF9B",
-    height: 125,
-    width: "46%",
-    justifyContent: "center",
-    borderRadius: 30,
-    borderWidth: 1,
-    borderColor: "black",
-  },
-
-  buttonGames: {
-    alignItems: "center",
-    backgroundColor: "#69FFD2",
-    height: 125,
-    width: "46%",
-    justifyContent: "center",
-    borderRadius: 30,
-    borderWidth: 1,
-    borderColor: "black",
-  },
-
-  buttonReminders: {
-    alignItems: "center",
-    backgroundColor: "#ACA4FF",
-    height: 125,
-    width: "46%",
-    justifyContent: "center",
-    borderRadius: 30,
-    borderWidth: 1,
-    borderColor: "black",
   },
 
   buttonMaps: {
     alignItems: "center",
+    backgroundColor: "#CCFFCC",
+    height: disensions.height * 0.2,
+    width: disensions.width * 0.9,
+    flexDirection: "row",
+    justifyContent: "center",
+    borderRadius: 30,
+    borderWidth: 1,
+    backgroundColor: "#FFFF9B",
     backgroundColor: "#A5DAFE",
-    height: 125,
-    width: "46%",
-    justifyContent: "center",
-    borderRadius: 30,
-    borderWidth: 1,
-    borderColor: "black",
-  },
-
-  buttonEmergency: {
-    alignItems: "center",
-    backgroundColor: "#68D8E7",
-    height: 125,
-    width: "46%",
-    justifyContent: "center",
-    borderRadius: 30,
-    borderWidth: 1,
-    borderColor: "black",
   },
 
   buttonText: {
     marginTop: 5,
-    fontSize: 25,
+    fontSize: 30,
     fontWeight: "bold",
     letterSpacing: 0.25,
     color: "black",
