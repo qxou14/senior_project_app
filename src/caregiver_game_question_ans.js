@@ -10,24 +10,10 @@ import {
   Image,
 } from "react-native";
 
-export default function C_question({ navigation }) {
-  //   useEffect(() => {
-  //     const ref = db.collection("questions");
-  //     ref.onSnapshot((query) => {
-  //       const objs = [];
-
-  //       query.forEach((doc) => {
-  //         objs.push({
-  //           key: doc.id,
-  //           question: doc.data().question,
-  //         });
-  //       });
-  //       setItem(objs);
-  //     });
-  //   }, []);
+export default function C_question_ans({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text>This is for question</Text>
+      <Text>This is for question and ans</Text>
     </View>
   );
 }

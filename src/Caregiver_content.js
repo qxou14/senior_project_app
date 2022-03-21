@@ -7,7 +7,7 @@ import {
   Text,
   SafeAreaView,
 } from "react-native";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import Input_button from "./Input_button";
 import Feather from "react-native-vector-icons/Feather";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -25,6 +25,21 @@ export default function Caregiver_content({ navigation }) {
         console.log("User signing out");
       })
       .catch((error) => alert(error.message));
+  };
+
+  const ready = () => {
+    db.collection("set_question")
+      .doc(auth.currentUser.email)
+      .set({
+        username: auth.currentUser.email,
+        ready: true,
+      })
+      .then(() => {
+        console.log("questions loaded  !");
+      })
+      .catch((error) => {
+        console.log("Error: ", error);
+      });
   };
 
   return (
@@ -82,6 +97,10 @@ export default function Caregiver_content({ navigation }) {
         <Pressable onPress={() => navigation.navigate("question")}>
           <FontAwesome name="list-alt" size={50} />
           <Text style={styles.buttonText}>question</Text>
+        </Pressable>
+
+        <Pressable onPress={ready}>
+          <Text style={styles.buttonText}>ready</Text>
         </Pressable>
       </View>
     </View>
