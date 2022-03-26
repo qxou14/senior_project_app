@@ -19,6 +19,7 @@ import C_question_ans from "../src/caregiver_game_question_ans";
 import Question_intro from "../src/caregiver_intro_question";
 import new_page from "../src/new_parent_1";
 import new_page2 from "../src/new_parent_2";
+import Patient_question from "../src/patient_question";
 
 const Stack = createNativeStackNavigator();
 
@@ -55,6 +56,8 @@ const AppNavigator = () => {
         <Stack.Screen name="question_ans" component={C_question_ans} />
 
         <Stack.Screen name="intro" component={Question_intro} />
+
+        <Stack.Screen name="patient_question" component={Patient_question} />
       </Stack.Navigator>
     </NavigationContainer>
   );

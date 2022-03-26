@@ -98,10 +98,10 @@ export default function Patient_content({ navigation }) {
 
         <Pressable
           style={styles.buttonEmergency}
-          onPress={() => console.log("From Register")}
+          onPress={() => navigation.navigate("patient_question")}
         >
-          <MaterialCommunityIcons name="medical-bag" color="red" size={50} />
-          <Text style={styles.buttonText}>Emergency</Text>
+          <MaterialCommunityIcons name="arm-flex" color="red" size={50} />
+          <Text style={styles.buttonText}>Game Excercise</Text>
         </Pressable>
       </View>
     </View>
