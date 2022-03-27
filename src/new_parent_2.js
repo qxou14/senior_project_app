@@ -45,30 +45,25 @@ export default function Patient_content({ navigation }) {
     <View style={styles.container}>
       <SafeAreaView>
         <View style={styles.headerWrapper}>
-          <Feather
-            name="settings"
-            size={56}
-            onPress={() => navigation.navigate("Profile_patient")}
-          />
-          <MaterialCommunityIcons
-            name="logout"
-            size={56}
-            onPress={handleSignOut}
-          />
+          <View style={styles.left}>
+            <Feather
+              name="settings"
+              size={56}
+              onPress={() => navigation.navigate("Profile_patient")}
+            />
+            <Text style={styles.leftword}>Profile</Text>
+          </View>
+
+          <View style={styles.right}>
+            <MaterialCommunityIcons
+              name="logout"
+              size={56}
+              onPress={handleSignOut}
+            />
+            <Text style={styles.leftword}>Log Out</Text>
+          </View>
         </View>
       </SafeAreaView>
-
-      <View style={styles.firstLayer}>
-        <Pressable
-          style={styles.buttonGames}
-          onPress={() => console.log("From Register")}
-        >
-          <View style={styles.iconStyle}>
-            <MaterialCommunityIcons name="brain" size={120} />
-          </View>
-          <Text style={styles.buttonText}> Games</Text>
-        </Pressable>
-      </View>
 
       <View style={styles.firstLayer}>
         <Pressable
@@ -84,13 +79,13 @@ export default function Patient_content({ navigation }) {
 
       <View style={styles.firstLayer}>
         <Pressable
-          style={styles.buttonEmergency}
-          onPress={() => console.log("From Register")}
+          style={styles.buttonAlbums}
+          onPress={() => console.log("album")}
         >
           <View style={styles.iconStyle}>
-            <MaterialCommunityIcons name="medical-bag" color="red" size={100} />
+            <FontAwesome name="file-picture-o" size={100} />
           </View>
-          <Text style={styles.buttonText}>Emergency</Text>
+          <Text style={styles.buttonText}>Albums</Text>
         </Pressable>
       </View>
     </View>
@@ -113,7 +108,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: "center",
-    marginBottom: 70,
+    marginBottom: 50,
   },
 
   button: {
@@ -141,6 +136,17 @@ const styles = StyleSheet.create({
     borderColor: "black",
   },
 
+  buttonAlbums: {
+    alignItems: "center",
+    backgroundColor: "#CCFFCC",
+    height: disensions.height * 0.2,
+    width: disensions.width * 0.9,
+    flexDirection: "row",
+    justifyContent: "center",
+    borderRadius: 30,
+    borderWidth: 1,
+    backgroundColor: "#FFFF9B",
+  },
   buttonReminders: {
     alignItems: "center",
     height: disensions.height * 0.2,
@@ -168,6 +174,22 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     letterSpacing: 0.25,
+    color: "black",
+    textAlign: "center",
+    fontFamily: "Sans",
+  },
+
+  left: {
+    alignItems: "center",
+  },
+  right: {
+    alignItems: "center",
+  },
+
+  leftword: {
+    marginTop: 5,
+    fontSize: 20,
+    fontWeight: "bold",
     color: "black",
     textAlign: "center",
     fontFamily: "Sans",

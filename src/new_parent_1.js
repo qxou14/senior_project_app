@@ -46,16 +46,23 @@ export default function Patient_content({ navigation }) {
     <View style={styles.container}>
       <SafeAreaView>
         <View style={styles.headerWrapper}>
-          <Feather
-            name="settings"
-            size={56}
-            onPress={() => navigation.navigate("Profile_patient")}
-          />
-          <MaterialCommunityIcons
-            name="logout"
-            size={56}
-            onPress={handleSignOut}
-          />
+          <View style={styles.left}>
+            <Feather
+              name="settings"
+              size={56}
+              onPress={() => navigation.navigate("Profile_patient")}
+            />
+            <Text style={styles.leftword}>Profile</Text>
+          </View>
+
+          <View style={styles.right}>
+            <MaterialCommunityIcons
+              name="logout"
+              size={56}
+              onPress={handleSignOut}
+            />
+            <Text style={styles.leftword}>Log Out</Text>
+          </View>
         </View>
       </SafeAreaView>
 
@@ -73,20 +80,20 @@ export default function Patient_content({ navigation }) {
 
       <View style={styles.firstLayer}>
         <Pressable
-          style={styles.buttonAlbums}
-          onPress={() => console.log("album")}
+          style={styles.buttonGames}
+          onPress={() => navigation.navigate("patient_question")}
         >
           <View style={styles.iconStyle}>
-            <FontAwesome name="file-picture-o" size={100} />
+            <MaterialCommunityIcons name="brain" color="red" size={120} />
           </View>
-          <Text style={styles.buttonText}>Albums</Text>
+          <Text style={styles.buttonText}> Games</Text>
         </Pressable>
       </View>
 
       <View style={styles.firstLayer}>
         <Pressable
           style={styles.buttonMaps}
-          onPress={() => console.log("PatientMaps")}
+          onPress={() => navigation.navigate("PatientMaps")}
         >
           <View style={styles.iconStyle}>
             <FontAwesome name="map" size={100} />
@@ -114,7 +121,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: "center",
-    marginBottom: 70,
+    marginBottom: 50,
   },
 
   button: {
@@ -141,17 +148,16 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "black",
   },
-
-  buttonAlbums: {
+  buttonGames: {
     alignItems: "center",
-    backgroundColor: "#CCFFCC",
+    backgroundColor: "#69FFD2",
     height: disensions.height * 0.2,
     width: disensions.width * 0.9,
     flexDirection: "row",
     justifyContent: "center",
     borderRadius: 30,
     borderWidth: 1,
-    backgroundColor: "#FFFF9B",
+    borderColor: "black",
   },
 
   buttonMaps: {
@@ -172,6 +178,22 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     letterSpacing: 0.25,
+    color: "black",
+    textAlign: "center",
+    fontFamily: "Sans",
+  },
+
+  left: {
+    alignItems: "center",
+  },
+  right: {
+    alignItems: "center",
+  },
+
+  leftword: {
+    marginTop: 5,
+    fontSize: 20,
+    fontWeight: "bold",
     color: "black",
     textAlign: "center",
     fontFamily: "Sans",

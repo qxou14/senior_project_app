@@ -36,16 +36,23 @@ export default function Patient_content({ navigation }) {
     <View style={styles.container}>
       <SafeAreaView>
         <View style={styles.headerWrapper}>
-          <Feather
-            name="settings"
-            size={56}
-            onPress={() => navigation.navigate("Profile_patient")}
-          />
-          <MaterialCommunityIcons
-            name="logout"
-            size={56}
-            onPress={handleSignOut}
-          />
+          <View style={styles.left}>
+            <Feather
+              name="settings"
+              size={56}
+              onPress={() => navigation.navigate("Profile_patient")}
+            />
+            <Text style={styles.leftword}>Profile</Text>
+          </View>
+
+          <View style={styles.right}>
+            <MaterialCommunityIcons
+              name="logout"
+              size={56}
+              onPress={handleSignOut}
+            />
+            <Text style={styles.leftword}>Log Out</Text>
+          </View>
         </View>
       </SafeAreaView>
 
@@ -70,11 +77,11 @@ export default function Patient_content({ navigation }) {
 
       <View style={styles.SecondLayer}>
         <Pressable
-          style={styles.buttonGames}
-          onPress={() => console.log("From Register")}
+          style={styles.buttonEmergency}
+          onPress={() => navigation.navigate("patient_question")}
         >
-          <MaterialCommunityIcons name="brain" size={50} />
-          <Text style={styles.buttonText}>Games</Text>
+          <MaterialCommunityIcons name="brain" color="red" size={50} />
+          <Text style={styles.buttonText}>Game </Text>
         </Pressable>
 
         <Pressable
@@ -95,14 +102,6 @@ export default function Patient_content({ navigation }) {
 
           <Text style={styles.buttonText}>Maps</Text>
         </Pressable>
-
-        <Pressable
-          style={styles.buttonEmergency}
-          onPress={() => navigation.navigate("patient_question")}
-        >
-          <MaterialCommunityIcons name="arm-flex" color="red" size={50} />
-          <Text style={styles.buttonText}>Game Excercise</Text>
-        </Pressable>
       </View>
     </View>
   );
@@ -120,6 +119,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 40,
   },
+  left: {
+    alignItems: "center",
+  },
+  right: {
+    alignItems: "center",
+  },
+
+  leftword: {
+    marginTop: 5,
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "black",
+    textAlign: "center",
+    fontFamily: "Sans",
+  },
+
   firstLayer: {
     flexWrap: "wrap",
     flexDirection: "row",
@@ -140,9 +155,8 @@ const styles = StyleSheet.create({
   },
 
   ThirdLayer: {
-    flexWrap: "wrap",
-    flexDirection: "row",
-    justifyContent: "space-between",
+    alignItems: "center",
+
     marginLeft: 15,
     marginRight: 15,
   },
