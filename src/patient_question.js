@@ -9,10 +9,13 @@ import {
   Text,
   Image,
   FlatList,
+  Dimensions,
 } from "react-native";
 import React, { useEffect, useState } from "react";
+import { useFonts } from "expo-font";
 
 const { Question_sets } = require("./Question_sets/question_list");
+const disensions = Dimensions.get("screen");
 
 export default function Patient_question({ navigation }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -34,24 +37,41 @@ export default function Patient_question({ navigation }) {
       setScore(score + 1);
     }
   };
+
+  const [loaded] = useFonts({
+    Sans: require("../assets/fonts/OpenSans-Bold.ttf"),
+  });
+
+  if (!loaded) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Patient question</Text>
-
+      <View style={styles.firstLayer}>
+        <Text style={styles.title}> Question</Text>
+      </View>
       <View>
         {/* This will make choices to render different screens */}
         {!scoreScreen ? (
           <View>
-            <Text>{Question_sets[currentQuestion].question}</Text>
-            {Question_sets[currentQuestion].options.map((option, index) => (
-              <Pressable onPress={() => click_answer(option.isAns)}>
-                <Text style={styles.buttonText}>{option.text}</Text>
-              </Pressable>
-            ))}
+            <Text style={styles.question}>
+              {Question_sets[currentQuestion].question}
+            </Text>
+            <View style={styles.answer}>
+              {Question_sets[currentQuestion].options.map((option, index) => (
+                <Pressable
+                  style={styles.choiceList}
+                  onPress={() => click_answer(option.isAns)}
+                >
+                  <Text style={styles.buttonText}>{option.text}</Text>
+                </Pressable>
+              ))}
+            </View>
           </View>
         ) : (
           <View>
-            <Text>
+            <Text style={styles.question}>
               You got {score} out of {Question_sets.length}
             </Text>
           </View>
@@ -64,40 +84,29 @@ export default function Patient_question({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FDFDF7",
-  },
-  headerWrapper: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingTop: 20,
-    alignItems: "center",
-    paddingHorizontal: 40,
+    backgroundColor: "#E6EAE4",
   },
   firstLayer: {
-    flexWrap: "wrap",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 70,
-    marginTop: 45,
-    marginLeft: 15,
-    marginRight: 15,
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 60,
+    marginTop: 60,
   },
 
-  SecondLayer: {
-    flexWrap: "wrap",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 70,
-    marginLeft: 15,
-    marginRight: 15,
+  title: {
+    fontSize: 30,
+    fontWeight: "bold",
+    textAlign: "center",
+    fontFamily: "Sans",
   },
 
-  ThirdLayer: {
-    flexWrap: "wrap",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginLeft: 15,
-    marginRight: 15,
+  question: {
+    fontSize: 26,
+    fontSize: 30,
+    marginBottom: 40,
+    fontWeight: "bold",
+    textAlign: "center",
+    fontFamily: "Sans",
   },
 
   button: {
@@ -109,70 +118,23 @@ const styles = StyleSheet.create({
     borderRadius: 35,
   },
 
-  buttonSchedule: {
+  answer: {
     alignItems: "center",
+    justifyContent: "center",
+  },
+
+  choiceList: {
+    marginTop: 20,
     backgroundColor: "#CCFFCC",
     height: 125,
     width: "46%",
-    justifyContent: "center",
     borderRadius: 30,
     borderWidth: 1,
     borderColor: "black",
-  },
-
-  buttonAlbums: {
+    height: disensions.height * 0.1,
+    width: disensions.width * 0.8,
     alignItems: "center",
-    backgroundColor: "#FFFF9B",
-    height: 125,
-    width: "46%",
     justifyContent: "center",
-    borderRadius: 30,
-    borderWidth: 1,
-    borderColor: "black",
-  },
-
-  buttonGames: {
-    alignItems: "center",
-    backgroundColor: "#69FFD2",
-    height: 125,
-    width: "46%",
-    justifyContent: "center",
-    borderRadius: 30,
-    borderWidth: 1,
-    borderColor: "black",
-  },
-
-  buttonReminders: {
-    alignItems: "center",
-    backgroundColor: "#ACA4FF",
-    height: 125,
-    width: "46%",
-    justifyContent: "center",
-    borderRadius: 30,
-    borderWidth: 1,
-    borderColor: "black",
-  },
-
-  buttonMaps: {
-    alignItems: "center",
-    backgroundColor: "#A5DAFE",
-    height: 125,
-    width: "46%",
-    justifyContent: "center",
-    borderRadius: 30,
-    borderWidth: 1,
-    borderColor: "black",
-  },
-
-  buttonEmergency: {
-    alignItems: "center",
-    backgroundColor: "#68D8E7",
-    height: 125,
-    width: "46%",
-    justifyContent: "center",
-    borderRadius: 30,
-    borderWidth: 1,
-    borderColor: "black",
   },
 
   buttonText: {

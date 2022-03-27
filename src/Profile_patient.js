@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { clickProps } from "react-native-web/dist/cjs/modules/forwardedProps";
 import React, { useState, useEffect } from "react";
+import { useFonts } from "expo-font";
 
 const disensions = Dimensions.get("screen");
 
@@ -60,6 +61,14 @@ export default function Profile_patient(props) {
     setCity("");
     setZip("");
   };
+
+  const [loaded] = useFonts({
+    Sans: require("../assets/fonts/OpenSans-Bold.ttf"),
+  });
+
+  if (!loaded) {
+    return null;
+  }
   return (
     <View style={styles.container}>
       <View style={styles.topWrapper}>
@@ -74,6 +83,7 @@ export default function Profile_patient(props) {
           style={styles.TextInput}
           placeholder="Street Name"
           placeholderTextColor="green"
+          fontSize="20"
           onChangeText={(name) => setStreet(name)}
           value={Street}
         />
@@ -83,6 +93,7 @@ export default function Profile_patient(props) {
           style={styles.TextInput}
           placeholder="Zip Code"
           placeholderTextColor="green"
+          fontSize="20"
           onChangeText={(zip) => setZip(zip)}
           value={Zip}
         />
@@ -92,6 +103,7 @@ export default function Profile_patient(props) {
           style={styles.TextInput}
           placeholder="State"
           placeholderTextColor="green"
+          fontSize="20"
           onChangeText={(s) => setStateLocate(s)}
           value={State_locate}
         />
@@ -101,6 +113,7 @@ export default function Profile_patient(props) {
           style={styles.TextInput}
           placeholder="City"
           placeholderTextColor="green"
+          fontSize="20"
           onChangeText={(city) => setCity(city)}
           value={City}
         />
@@ -133,21 +146,23 @@ const styles = StyleSheet.create({
   },
 
   title: {
+    fontSize: 36,
+    fontWeight: "bold",
+    justifyContent: "center",
+    marginBottom: 30,
+    fontFamily: "Sans",
+  },
+
+  subtitle: {
     fontSize: 30,
     fontWeight: "bold",
     justifyContent: "center",
     marginBottom: 30,
-  },
-
-  subtitle: {
-    fontSize: 15,
-    fontWeight: "bold",
-    justifyContent: "center",
-    marginBottom: 30,
+    fontFamily: "Sans",
   },
 
   address: {
-    fontSize: 20,
+    fontSize: 25,
   },
 
   inputView: {
@@ -166,7 +181,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "green",
     borderRadius: 40,
-    width: disensions.width / 3,
+    width: disensions.width / 2,
     height: disensions.height / 12,
     justifyContent: "center",
   },
@@ -175,5 +190,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: "white",
+    fontFamily: "Sans",
   },
 });
