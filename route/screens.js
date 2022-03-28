@@ -19,6 +19,8 @@ import C_question_ans from "../src/caregiver_game_question_ans";
 import Question_intro from "../src/caregiver_intro_question";
 import new_page from "../src/new_parent_1";
 import new_page2 from "../src/new_parent_2";
+import new_careviver from "../src/new_caregiver";
+import new_caregiver2 from "../src/new_caregiver2";
 import Patient_question from "../src/patient_question";
 
 const Stack = createNativeStackNavigator();
@@ -39,7 +41,7 @@ const AppNavigator = () => {
         />
         <Stack.Screen
           name="Caregiver Content"
-          component={Caregiver_content}
+          component={new_careviver}
           options={{ headerShown: false }}
         />
 
@@ -68,6 +70,18 @@ const AppNavigator = () => {
         <Stack.Screen
           name="patient_Content2"
           component={new_page2}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="care_Content"
+          component={new_careviver}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="care_Content2"
+          component={new_caregiver2}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

@@ -46,8 +46,10 @@ export default function Question_intro({ navigation }) {
   };
   return (
     <View style={styles.container}>
-      <Text>This page gives an introduction of the game.</Text>
-      <Pressable style={styles.buttonAlbum} onPress={load}>
+      <Text style={styles.title}>
+        This page gives an introduction of the game.
+      </Text>
+      <Pressable style={styles.button} onPress={load}>
         <Text style={styles.buttonText}>Ok</Text>
       </Pressable>
     </View>
@@ -57,96 +59,33 @@ export default function Question_intro({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#E6EAE4",
-  },
-  headerWrapper: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingTop: 40,
+    backgroundColor: "#CCFFCC",
     alignItems: "center",
-    paddingHorizontal: 40,
+    justifyContent: "center",
+    padding: 0,
   },
+  topWrapper: {},
 
-  firstLayer: {
-    flexWrap: "wrap",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 70,
-    marginTop: 180,
-    marginLeft: 15,
-    marginRight: 15,
-  },
-
-  SecondLayer: {
-    flexWrap: "wrap",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 70,
-    marginLeft: 15,
-    marginRight: 15,
+  title: {
+    fontSize: 30,
+    fontWeight: "bold",
+    justifyContent: "center",
+    marginBottom: 30,
   },
 
   button: {
     alignItems: "center",
     backgroundColor: "#5DB075",
-    height: 125,
-    width: "46%",
-    justifyContent: "center",
-    borderRadius: 30,
-    borderWidth: 1,
-    borderColor: "black",
-  },
-
-  buttonAlbum: {
-    alignItems: "center",
-    backgroundColor: "#FFFF9B",
-    height: 125,
-    width: "46%",
-    justifyContent: "center",
-    borderRadius: 30,
-    borderWidth: 1,
-    borderColor: "black",
-  },
-
-  buttonMaps: {
-    alignItems: "center",
-    backgroundColor: "#A5DAFE",
-    height: 125,
-    width: "46%",
-    justifyContent: "center",
-    borderRadius: 30,
-    borderWidth: 1,
-    borderColor: "black",
-  },
-
-  buttonFeedback: {
-    alignItems: "center",
-    backgroundColor: "#FFDE6D",
-    height: 125,
-    width: "46%",
-    justifyContent: "center",
-    borderRadius: 30,
-    borderWidth: 1,
-    borderColor: "black",
-  },
-
-  buttonSchedule: {
-    alignItems: "center",
-    backgroundColor: "#CCFFCC",
-    height: 125,
-    width: "46%",
-    justifyContent: "center",
-    borderRadius: 30,
-    borderWidth: 1,
-    borderColor: "black",
+    paddingVertical: 20,
+    paddingHorizontal: 40,
+    borderRadius: 100,
+    marginBottom: 20,
   },
 
   buttonText: {
-    marginTop: 5,
     fontSize: 25,
     fontWeight: "bold",
     letterSpacing: 0.25,
-    color: "black",
-    textAlign: "center",
+    color: "white",
   },
 });
