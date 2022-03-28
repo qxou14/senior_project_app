@@ -93,7 +93,7 @@ export default function Todo({ navigation }) {
         <Foundation name="calendar" size={56} style={styles.calendar} />
         <View style={styles.dataWrapper}>
           <MaterialIcons name="keyboard-arrow-left" size={46} />
-          <Text style={styles.dateStyle}>March 3 2022</Text>
+          <Text style={styles.dateStyle}>March 28 2022</Text>
           <MaterialIcons name="keyboard-arrow-right" size={46} />
         </View>
       </View>
@@ -111,7 +111,7 @@ export default function Todo({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#E6EAE4",
+    backgroundColor: "#CCFFCC",
     alignItems: "center",
     padding: 0,
   },

@@ -84,7 +84,7 @@ export default function Patient_question({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#E6EAE4",
+    backgroundColor: "#CCFFCC",
   },
   firstLayer: {
     justifyContent: "center",
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
 
   choiceList: {
     marginTop: 20,
-    backgroundColor: "#CCFFCC",
+    backgroundColor: "#E6EAE4",
     height: 125,
     width: "46%",
     borderRadius: 30,

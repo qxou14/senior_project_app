@@ -226,7 +226,8 @@ const styles = StyleSheet.create({
     color: "white",
   },
   taskWrapper: {
-    backgroundColor: "#c8d6c1",
+    backgroundColor: "#CCFFCC",
+
     width: disensions.width,
     height: disensions.height - disensions.height / 4,
   },

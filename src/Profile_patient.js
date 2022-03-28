@@ -135,7 +135,7 @@ export default function Profile_patient(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#c8d6c1",
+    backgroundColor: "#CCFFCC",
     alignItems: "center",
     justifyContent: "center",
   },

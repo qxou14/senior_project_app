@@ -114,7 +114,7 @@ export default function Patient_content({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FDFDF7",
+    backgroundColor: "#CCFFCC",
   },
   headerWrapper: {
     flexDirection: "row",
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
 
   buttonSchedule: {
     alignItems: "center",
-    backgroundColor: "#CCFFCC",
+    backgroundColor: "#68D8E7",
     height: disensions.height * 0.2,
     width: disensions.width * 0.9,
     flexDirection: "row",
