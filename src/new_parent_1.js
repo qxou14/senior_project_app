@@ -55,6 +55,12 @@ export default function Patient_content({ navigation }) {
             <Text style={styles.leftword}>Profile</Text>
           </View>
 
+          <MaterialCommunityIcons
+            name="arrow-right"
+            size={56}
+            onPress={() => navigation.navigate("patient_Content2")}
+          />
+
           <View style={styles.right}>
             <MaterialCommunityIcons
               name="logout"

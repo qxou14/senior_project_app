@@ -34,7 +34,7 @@ const AppNavigator = () => {
 
         <Stack.Screen
           name="Patient Content"
-          component={Patient_content}
+          component={new_page}
           options={{ headerShown: false }}
         />
         <Stack.Screen
@@ -58,6 +58,18 @@ const AppNavigator = () => {
         <Stack.Screen name="intro" component={Question_intro} />
 
         <Stack.Screen name="patient_question" component={Patient_question} />
+
+        <Stack.Screen
+          name="patient_Content"
+          component={new_page}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="patient_Content2"
+          component={new_page2}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

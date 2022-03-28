@@ -23,7 +23,7 @@ FontAwesome.loadFont();
 
 const disensions = Dimensions.get("screen");
 
-export default function Patient_content({ navigation }) {
+export default function Patient_content2({ navigation }) {
   const handleSignOut = () => {
     auth
       .signOut()
@@ -53,6 +53,12 @@ export default function Patient_content({ navigation }) {
             />
             <Text style={styles.leftword}>Profile</Text>
           </View>
+
+          <MaterialCommunityIcons
+            name="arrow-left"
+            size={56}
+            onPress={() => navigation.navigate("patient_Content")}
+          />
 
           <View style={styles.right}>
             <MaterialCommunityIcons
