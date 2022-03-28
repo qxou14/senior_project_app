@@ -149,7 +149,7 @@ export default function Caregiver_content({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#E6EAE4",
+    backgroundColor: "#CCFFCC",
   },
   headerWrapper: {
     flexDirection: "row",
@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
 
   buttonSchedule: {
     alignItems: "center",
-    backgroundColor: "#CCFFCC",
+    backgroundColor: "#68D8E7",
     height: 125,
     width: "46%",
     justifyContent: "center",
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
 
   buttonquestion: {
     alignItems: "center",
-    backgroundColor: "#CCFFCC",
+    backgroundColor: "#A5DAFE",
     height: 125,
     width: "46%",
     justifyContent: "center",
