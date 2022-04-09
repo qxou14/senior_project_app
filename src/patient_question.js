@@ -38,6 +38,34 @@ export default function Patient_question({ navigation }) {
     }
   };
 
+  //restore everything
+  const try_again = () => {
+    setScoreScreen(false);
+    setCurrentQuestion(0);
+    setScore(0);
+  };
+
+  const update = () => {
+    db.collection("score")
+      .doc(auth.currentUser.email)
+      .set({
+        score: score,
+        date: new Date().getDate(),
+        month: new Date().getMonth() + 1,
+        year: new Date().getFullYear(),
+        hours: new Date().getHours(),
+        min: new Date().getMinutes(),
+      })
+      .then(() => {
+        console.log("Score updated!");
+      })
+      .catch((error) => {
+        console.log("Error: ", error);
+      });
+
+    navigation.navigate("Patient_Content");
+  };
+
   const [loaded] = useFonts({
     Sans: require("../assets/fonts/OpenSans-Bold.ttf"),
   });
@@ -73,6 +101,12 @@ export default function Patient_question({ navigation }) {
           <View>
             <Text style={styles.question}>
               You got {score} out of {Question_sets.length}
+              <Pressable style={styles.choiceList} onPress={try_again}>
+                <Text style={styles.buttonText}>Try again</Text>
+              </Pressable>
+              <Pressable style={styles.choiceList} onPress={update}>
+                <Text style={styles.buttonText}>Exit</Text>
+              </Pressable>
             </Text>
           </View>
         )}
