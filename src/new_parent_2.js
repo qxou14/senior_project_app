@@ -57,7 +57,7 @@ export default function Patient_content2({ navigation }) {
           <MaterialCommunityIcons
             name="arrow-left"
             size={56}
-            onPress={() => navigation.navigate("patient_Content")}
+            onPress={() => navigation.navigate("Patient_Content")}
           />
 
           <View style={styles.right}>
@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingTop: 20,
+    marginBottom: 20,
     alignItems: "center",
     paddingHorizontal: 40,
   },
@@ -127,57 +128,34 @@ const styles = StyleSheet.create({
   },
 
   iconStyle: {
-    marginRight: 40,
-  },
-
-  buttonGames: {
-    alignItems: "center",
-    backgroundColor: "#69FFD2",
-    height: disensions.height * 0.2,
-    width: disensions.width * 0.9,
-    flexDirection: "row",
-    justifyContent: "center",
-    borderRadius: 30,
-    borderWidth: 1,
-    borderColor: "black",
+    marginRight: 30,
   },
 
   buttonAlbums: {
     alignItems: "center",
     backgroundColor: "#CCFFCC",
-    height: disensions.height * 0.2,
+    height: disensions.height * 0.18,
     width: disensions.width * 0.9,
     flexDirection: "row",
     justifyContent: "center",
     borderRadius: 30,
-    borderWidth: 1,
+    borderWidth: 2,
     backgroundColor: "#FFFF9B",
   },
   buttonReminders: {
     alignItems: "center",
-    height: disensions.height * 0.2,
+    height: disensions.height * 0.18,
     width: disensions.width * 0.9,
     flexDirection: "row",
     justifyContent: "center",
     borderRadius: 30,
-    borderWidth: 1,
+    borderWidth: 2,
     backgroundColor: "#ACA4FF",
-  },
-
-  buttonEmergency: {
-    alignItems: "center",
-    height: disensions.height * 0.2,
-    width: disensions.width * 0.9,
-    flexDirection: "row",
-    justifyContent: "center",
-    borderRadius: 30,
-    borderWidth: 1,
-    backgroundColor: "#68D8E7",
   },
 
   buttonText: {
     marginTop: 5,
-    fontSize: 30,
+    fontSize: 35,
     fontWeight: "bold",
     letterSpacing: 0.25,
     color: "black",

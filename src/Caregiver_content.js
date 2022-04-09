@@ -1,14 +1,11 @@
 import {
   StyleSheet,
   View,
-  Button,
-  Alert,
   Pressable,
   Text,
   SafeAreaView,
 } from "react-native";
 import { auth, db } from "../firebase";
-import Input_button from "./Input_button";
 import Feather from "react-native-vector-icons/Feather";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";

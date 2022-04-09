@@ -1,6 +1,4 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, SafeAreaView, TextInput } from "react-native";
-import { clickProps } from "react-native-web/dist/cjs/modules/forwardedProps";
+import { StyleSheet, View, TextInput } from "react-native";
 import React from "react";
 
 export default function Input_button(props) {

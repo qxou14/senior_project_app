@@ -20,8 +20,14 @@ const disensions = Dimensions.get("screen");
 
 export default function Todo({ navigation }) {
   const [Item, setItem] = useState([]);
+  const [currentDate, setcurrentDate] = useState('');
 
   useEffect(() => {
+    var date = new Date().getDate();
+    var month = new Date().getMonth() + 1;
+    var year = new Date().getFullYear();
+    setcurrentDate(month + '/' + date + '/' + year);
+
     const ref = db
       .collection("Todo")
       .where("username", "==", auth.currentUser.email);
@@ -93,7 +99,7 @@ export default function Todo({ navigation }) {
         <Foundation name="calendar" size={56} style={styles.calendar} />
         <View style={styles.dataWrapper}>
           <MaterialIcons name="keyboard-arrow-left" size={46} />
-          <Text style={styles.dateStyle}>March 28 2022</Text>
+          <Text style={styles.dateStyle}> {currentDate} </Text>
           <MaterialIcons name="keyboard-arrow-right" size={46} />
         </View>
       </View>
@@ -131,7 +137,7 @@ const styles = StyleSheet.create({
 
   dateStyle: {
     fontWeight: "bold",
-    fontSize: 30,
+    fontSize: 35,
   },
   calendar: {
     textAlign: "center",

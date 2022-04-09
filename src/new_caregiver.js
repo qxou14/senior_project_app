@@ -8,14 +8,10 @@ import {
   Dimensions,
 } from "react-native";
 import { auth } from "../firebase";
-import Input_button from "./Input_button";
 import Feather from "react-native-vector-icons/Feather";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { storageBucket } from "../keys";
 import { SafeAreaView } from "react-native-safe-area-context";
-import ButtonItem from "./compnents/ButtonItem";
-import { useFonts } from "expo-font";
 
 Feather.loadFont();
 MaterialCommunityIcons.loadFont();
@@ -23,7 +19,7 @@ FontAwesome.loadFont();
 
 const disensions = Dimensions.get("screen");
 
-export default function caregiver_content({ navigation }) {
+export default function Caregiver_content({ navigation }) {
   const handleSignOut = () => {
     auth
       .signOut()
@@ -88,14 +84,14 @@ export default function caregiver_content({ navigation }) {
       <SafeAreaView>
         <View style={styles.headerWrapper}>
           <View style={styles.left}>
-            <Feather name="settings" size={56} style={styles.buttonAlbum} />
+            <Feather name="settings" size={56} />
             <Text style={styles.leftword}>Profile</Text>
           </View>
 
           <MaterialCommunityIcons
             name="arrow-right"
             size={56}
-            onPress={() => navigation.navigate("care_Content2")}
+            onPress={() => navigation.navigate("Care_Content2")}
           />
 
           <View style={styles.right}>
@@ -123,7 +119,7 @@ export default function caregiver_content({ navigation }) {
 
       <View style={styles.firstLayer}>
         <Pressable
-          style={styles.buttonGames}
+          style={styles.buttonAlbum}
           onPress={() => navigation.navigate("C_Album")}
         >
           <View style={styles.iconStyle}>
@@ -157,6 +153,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingTop: 20,
+    marginBottom: 20,
     alignItems: "center",
     paddingHorizontal: 40,
   },
@@ -183,47 +180,47 @@ const styles = StyleSheet.create({
   buttonSchedule: {
     alignItems: "center",
     backgroundColor: "#68D8E7",
-    height: disensions.height * 0.2,
+    height: disensions.height * 0.18,
     width: disensions.width * 0.9,
     flexDirection: "row",
     justifyContent: "center",
     borderRadius: 30,
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: "black",
   },
-  buttonGames: {
+
+  buttonAlbum: {
     alignItems: "center",
     backgroundColor: "#FFFF9B",
-    height: disensions.height * 0.2,
+    height: disensions.height * 0.18,
     width: disensions.width * 0.9,
     flexDirection: "row",
     justifyContent: "center",
     borderRadius: 30,
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: "black",
   },
 
   buttonMaps: {
     alignItems: "center",
     backgroundColor: "#CCFFCC",
-    height: disensions.height * 0.2,
+    height: disensions.height * 0.18,
     width: disensions.width * 0.9,
     flexDirection: "row",
     justifyContent: "center",
     borderRadius: 30,
-    borderWidth: 1,
+    borderWidth: 2,
     backgroundColor: "#FFFF9B",
     backgroundColor: "#A5DAFE",
   },
 
   buttonText: {
     marginTop: 5,
-    fontSize: 30,
+    fontSize: 35,
     fontWeight: "bold",
     letterSpacing: 0.25,
     color: "black",
     textAlign: "center",
-    fontFamily: "Sans",
   },
 
   left: {

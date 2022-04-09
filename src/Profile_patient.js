@@ -38,7 +38,7 @@ export default function Profile_patient(props) {
   }, []);
 
   const update_info = (Street, State_locate, City, Zip) => {
-    let full = Street + " , " + City + " , " + State_locate + " , " + Zip;
+    let full = Street + ", " + City + ", " + State_locate + ", " + Zip;
     db.collection("profile")
       .doc(auth.currentUser.email)
       .set({
@@ -74,7 +74,6 @@ export default function Profile_patient(props) {
       <View style={styles.topWrapper}>
         <Text style={styles.title}>Profile</Text>
         <Text style={styles.subtitle}>Patient Address Info.</Text>
-
         <Text style={styles.address}>{FullAddress}</Text>
       </View>
 
@@ -83,7 +82,6 @@ export default function Profile_patient(props) {
           style={styles.TextInput}
           placeholder="Street Name"
           placeholderTextColor="green"
-          fontSize="20"
           onChangeText={(name) => setStreet(name)}
           value={Street}
         />
@@ -93,7 +91,6 @@ export default function Profile_patient(props) {
           style={styles.TextInput}
           placeholder="Zip Code"
           placeholderTextColor="green"
-          fontSize="20"
           onChangeText={(zip) => setZip(zip)}
           value={Zip}
         />
@@ -103,7 +100,6 @@ export default function Profile_patient(props) {
           style={styles.TextInput}
           placeholder="State"
           placeholderTextColor="green"
-          fontSize="20"
           onChangeText={(s) => setStateLocate(s)}
           value={State_locate}
         />
@@ -113,7 +109,6 @@ export default function Profile_patient(props) {
           style={styles.TextInput}
           placeholder="City"
           placeholderTextColor="green"
-          fontSize="20"
           onChangeText={(city) => setCity(city)}
           value={City}
         />
@@ -162,7 +157,7 @@ const styles = StyleSheet.create({
   },
 
   address: {
-    fontSize: 25,
+    fontSize: 20,
   },
 
   inputView: {

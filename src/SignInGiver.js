@@ -18,7 +18,7 @@ export default function SignIn({ navigation }) {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        navigation.navigate("Caregiver Content");
+        navigation.navigate("Care_Content");
       }
     });
 

@@ -1,9 +1,6 @@
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   View,
-  Button,
-  Alert,
   Pressable,
   Text,
   Image,
