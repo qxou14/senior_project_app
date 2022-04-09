@@ -5,8 +5,6 @@ import SignIn from "../src/SignIn";
 import Register from "../src/Register";
 import Home from "../src/Home";
 import SignInGiver from "../src/SignInGiver";
-import Patient_content from "../src/Patient_content";
-import Caregiver_content from "../src/Caregiver_content";
 import Todo from "../src/Todo";
 import Todo_Giver from "../src/Todo_Giver";
 import C_Album from "../src/Caregiver_album";
@@ -17,10 +15,10 @@ import CaregiverMaps from "../src/CaregiverMaps";
 import C_question from "../src/caregiver_game_question";
 import C_question_ans from "../src/caregiver_game_question_ans";
 import Question_intro from "../src/caregiver_intro_question";
-import new_page from "../src/new_parent_1";
-import new_page2 from "../src/new_parent_2";
-import new_careviver from "../src/new_caregiver";
-import new_caregiver2 from "../src/new_caregiver2";
+import New_page from "../src/New_parent_1";
+import New_page2 from "../src/New_parent_2";
+import New_caregiver from "../src/New_caregiver";
+import New_caregiver2 from "../src/New_caregiver2";
 import Patient_question from "../src/patient_question";
 
 const Stack = createNativeStackNavigator();
@@ -33,18 +31,6 @@ const AppNavigator = () => {
         <Stack.Screen name="Patient SignIn" component={SignIn} />
         <Stack.Screen name="CareGiver SignIn" component={SignInGiver} />
         <Stack.Screen name="Register" component={Register} />
-
-        <Stack.Screen
-          name="Patient Content"
-          component={new_page}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Caregiver Content"
-          component={new_careviver}
-          options={{ headerShown: false }}
-        />
-
         <Stack.Screen name="Todo" component={Todo} />
         <Stack.Screen name="Todo_Giver" component={Todo_Giver} />
         <Stack.Screen name="C_Album" component={C_Album} />
@@ -62,26 +48,26 @@ const AppNavigator = () => {
         <Stack.Screen name="patient_question" component={Patient_question} />
 
         <Stack.Screen
-          name="patient_Content"
-          component={new_page}
+          name="Patient_Content"
+          component={New_page}
           options={{ headerShown: false }}
         />
 
         <Stack.Screen
-          name="patient_Content2"
-          component={new_page2}
+          name="Patient_Content2"
+          component={New_page2}
           options={{ headerShown: false }}
         />
 
         <Stack.Screen
-          name="care_Content"
-          component={new_careviver}
+          name="Care_Content"
+          component={New_caregiver}
           options={{ headerShown: false }}
         />
 
         <Stack.Screen
-          name="care_Content2"
-          component={new_caregiver2}
+          name="Care_Content2"
+          component={New_caregiver2}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

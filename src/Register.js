@@ -1,14 +1,10 @@
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
   View,
   TextInput,
-  Button,
-  Alert,
   Pressable,
 } from "react-native";
-import Input_button from "./Input_button";
 import { auth } from "../firebase";
 import { useState } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
