@@ -55,6 +55,7 @@ export default function Patient_question({ navigation }) {
         year: new Date().getFullYear(),
         hours: new Date().getHours(),
         min: new Date().getMinutes(),
+        username: auth.currentUser.email,
       })
       .then(() => {
         console.log("Score updated!");

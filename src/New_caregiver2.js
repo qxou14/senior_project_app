@@ -1,10 +1,4 @@
-import {
-  StyleSheet,
-  View,
-  Pressable,
-  Text,
-  Dimensions,
-} from "react-native";
+import { StyleSheet, View, Pressable, Text, Dimensions } from "react-native";
 import { auth } from "../firebase";
 import Feather from "react-native-vector-icons/Feather";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -83,6 +77,18 @@ export default function Caregiver_content2({ navigation }) {
             <FontAwesome name="comment" size={100} />
           </View>
           <Text style={styles.buttonText}>Feedback</Text>
+        </Pressable>
+      </View>
+
+      <View style={styles.firstLayer}>
+        <Pressable
+          style={styles.buttonReport}
+          onPress={() => navigation.navigate("Score")}
+        >
+          <View style={styles.iconStyle}>
+            <FontAwesome name="book" size={100} />
+          </View>
+          <Text style={styles.buttonText}>Report</Text>
         </Pressable>
       </View>
     </View>
@@ -191,5 +197,18 @@ const styles = StyleSheet.create({
     color: "black",
     textAlign: "center",
     fontFamily: "Sans",
+  },
+
+  buttonReport: {
+    alignItems: "center",
+    backgroundColor: "#CCFFCC",
+    height: disensions.height * 0.18,
+    width: disensions.width * 0.9,
+    flexDirection: "row",
+    justifyContent: "center",
+    borderRadius: 30,
+    borderWidth: 2,
+    backgroundColor: "#FFFF9B",
+    backgroundColor: "#A5DAFE",
   },
 });
