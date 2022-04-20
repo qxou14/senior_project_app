@@ -21,6 +21,7 @@ import New_caregiver from "../src/New_caregiver";
 import New_caregiver2 from "../src/New_caregiver2";
 import Patient_question from "../src/patient_question";
 import View_Score from "../src/Caregiver_view_score";
+import Feedback from "../src/Feedback";
 
 const Stack = createNativeStackNavigator();
 
@@ -49,6 +50,8 @@ const AppNavigator = () => {
         <Stack.Screen name="patient_question" component={Patient_question} />
 
         <Stack.Screen name="Score" component={View_Score} />
+
+        <Stack.Screen name="Feedback" component={Feedback} />
 
         <Stack.Screen
           name="Patient_Content"

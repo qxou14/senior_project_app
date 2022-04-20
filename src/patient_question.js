@@ -22,7 +22,7 @@ export default function Patient_question({ navigation }) {
   const [scoreScreen, setScoreScreen] = useState(false);
   const [score, setScore] = useState(0);
 
-  const click_answer = (answer_clicked) => {
+  const update_page = (answer_clicked) => {
     //if there are still questions
     if (currentQuestion < Question_sets.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
@@ -32,9 +32,26 @@ export default function Patient_question({ navigation }) {
       setScoreScreen(true);
     }
 
-    //if answer is correct, we increase the score
     if (answer_clicked == true) {
       setScore(score + 1);
+    }
+  };
+  const click_answer = (answer_clicked) => {
+    //if answer is correct, we increase the score
+    if (answer_clicked == true) {
+      Alert.alert("correct !", "correct", [
+        {
+          text: "ok",
+          onPress: () => update_page(answer_clicked),
+        },
+      ]);
+    } else {
+      Alert.alert("Incorrect !", "incorrect", [
+        {
+          text: "ok",
+          onPress: () => update_page(answer_clicked),
+        },
+      ]);
     }
   };
 

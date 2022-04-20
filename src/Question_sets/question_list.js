@@ -63,6 +63,50 @@ const Question_sets = [
       },
     ],
   },
+
+  {
+    question: "How old are you?",
+    options: [
+      {
+        text: "62",
+        isAns: false,
+      },
+      {
+        text: "61",
+        isAns: true,
+      },
+      {
+        text: "65",
+        isAns: false,
+      },
+      {
+        text: "64",
+        isAns: false,
+      },
+    ],
+  },
+
+  {
+    question: "What is your favorite food?",
+    options: [
+      {
+        text: "Potato",
+        isAns: false,
+      },
+      {
+        text: "Mushroom",
+        isAns: true,
+      },
+      {
+        text: "Spinach",
+        isAns: false,
+      },
+      {
+        text: "Tomato",
+        isAns: false,
+      },
+    ],
+  },
 ];
 
 module.exports = {

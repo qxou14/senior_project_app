@@ -56,7 +56,7 @@ export default function Caregiver_content2({ navigation }) {
         </View>
       </SafeAreaView>
 
-      <View style={styles.firstLayer}>
+      {/* <View style={styles.firstLayer}>
         <Pressable
           style={styles.buttonReminders}
           onPress={() => navigation.navigate("intro")}
@@ -66,12 +66,12 @@ export default function Caregiver_content2({ navigation }) {
           </View>
           <Text style={styles.buttonText}>FAQs</Text>
         </Pressable>
-      </View>
+      </View> */}
 
       <View style={styles.firstLayer}>
         <Pressable
           style={styles.buttonAlbums}
-          onPress={() => console.log("From Register")}
+          onPress={() => navigation.navigate("Feedback")}
         >
           <View style={styles.iconStyle}>
             <FontAwesome name="comment" size={100} />
