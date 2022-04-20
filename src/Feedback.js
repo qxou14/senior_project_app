@@ -33,13 +33,21 @@ export default function Feedback(props) {
   };
   return (
     <View style={styles.container}>
-      <TextInput
-        placeholder="Enter Feedback Here"
-        onChangeText={(msg) => setMSG(msg)}
-      />
-      <Pressable style={styles.buttonAlbum} onPress={handle_enter}>
-        <Text style={styles.buttonText}>Submit</Text>
-      </Pressable>
+      {!enter ? (
+        <View>
+          <TextInput
+            placeholder="Enter Feedback Here"
+            onChangeText={(msg) => setMSG(msg)}
+          />
+          <Pressable style={styles.buttonAlbum} onPress={handle_enter}>
+            <Text style={styles.buttonText}>Submit</Text>
+          </Pressable>
+        </View>
+      ) : (
+        <View>
+          <Text>Thank you for your feedback !</Text>
+        </View>
+      )}
     </View>
   );
 }
