@@ -71,7 +71,7 @@ export default function Patient_content2({ navigation }) {
         </View>
       </SafeAreaView>
 
-      <View style={styles.firstLayer}>
+      {/* <View style={styles.firstLayer}>
         <Pressable
           style={styles.buttonReminders}
           onPress={() => console.log("From Register")}
@@ -81,7 +81,7 @@ export default function Patient_content2({ navigation }) {
           </View>
           <Text style={styles.buttonText}>Reminders</Text>
         </Pressable>
-      </View>
+      </View> */}
 
       <View style={styles.firstLayer}>
         <Pressable
