@@ -34,7 +34,7 @@ const AppNavigator = () => {
         <Stack.Screen name="CareGiver SignIn" component={SignInGiver} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Todo" component={Todo} />
-        <Stack.Screen name="Todo_Giver" component={Todo_Giver} />
+        <Stack.Screen name="Scheduler" component={Todo_Giver} />
         <Stack.Screen name="C_Album" component={C_Album} />
         <Stack.Screen name="Add_photo" component={Add_photo} />
         <Stack.Screen name="Profile_patient" component={Profile_patient} />
