@@ -7,11 +7,13 @@ import {
   Pressable,
   TextInput,
   Dimensions,
+  TouchableHighlight,
+  Image,
+  ScrollView,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import Checkbox from "expo-checkbox";
 
-const disensions = Dimensions.get("screen");
+const dimensions = Dimensions.get("screen");
 
 export default function Todo_Giver({ navigation }) {
   const [Item, setItem] = useState([]);
@@ -85,31 +87,27 @@ export default function Todo_Giver({ navigation }) {
     return (
       <View>
         <View style={styles.listItem}>
-          <View style={styles.leftitem}>
-            <Text style={{ fontWeight: "bold", fontSize: 20 }}>
-              {todo.key}{" "}
-            </Text>
-          </View>
 
-          <View style={styles.rightitem}>
-            <Text
-              style={{
-                fontWeight: "bold",
-                fontSize: 20,
-              }}
-            >
-              {todo.Action}{" "}
-            </Text>
-          </View>
+          <View style = {styles.listItemLeftContainer}>
 
-          <Pressable
-            style={styles.button}
-            onPress={() => {
-              delete_info(todo.key);
-            }}
-          >
-            <Text style={styles.buttonText}>Delete</Text>
-          </Pressable>
+            <View style={styles.listItemTask}>
+              <Text style={styles.taskText}>
+                {todo.Action}{" "}
+              </Text>
+            </View>
+
+            <View style={styles.listItemDate}>
+              <Text style={styles.dateText}>
+                {todo.key}{" "}
+              </Text>
+            </View>
+
+          </View>
+          
+          <TouchableHighlight onPress={() => {delete_info(todo.key);}}>
+            <Image style = {styles.imageStyle} source = {require("../assets/trash.png")}/>
+          </TouchableHighlight>
+
         </View>
       </View>
     );
@@ -117,12 +115,28 @@ export default function Todo_Giver({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.topWrapper}>
+
+      <View style={styles.taskWrapper}>
+        <View style={styles.titleWrapper}>
+          <Text style={styles.title}>Assigned Daily Tasks</Text>
+        </View>
+
+        <View style={styles.taskList}>
+          <FlatList
+            data={Item}
+            showsVerticalScrollIndicator={true}
+            contentContainerStyle={{ paddingBottom: 100 }}
+            renderItem={({ item }) => <ListItem todo={item} />}
+          />
+        </View>
+      </View>
+
+      <View style={styles.bottomWrapper}>
         <View style={styles.inputWrapper}>
-          <View style={styles.TimeinputView}>
+          <View style={styles.TimeInputView}>
             <TextInput
               placeholder="Time"
-              placeholderTextColor="green"
+              placeholderTextColor="black"
               style={styles.TextInput}
               onChangeText={(time) => setTime(time)}
             />
@@ -132,8 +146,8 @@ export default function Todo_Giver({ navigation }) {
             <View style={styles.ActionInputView}>
               <TextInput
                 style={styles.TextInput}
-                placeholder="Action"
-                placeholderTextColor="green"
+                placeholder="Input task..."
+                placeholderTextColor="black"
                 onChangeText={(action) => setAction(action)}
               />
             </View>
@@ -147,20 +161,6 @@ export default function Todo_Giver({ navigation }) {
         </View>
       </View>
 
-      <View style={styles.taskWrapper}>
-        <View style={styles.titleWrapper}>
-          <Text style={styles.title}>Assigned Task List</Text>
-        </View>
-
-        <View style={styles.taskList}>
-          <FlatList
-            data={Item}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ paddingBottom: 100 }}
-            renderItem={({ item }) => <ListItem todo={item} />}
-          />
-        </View>
-      </View>
     </View>
   );
 }
@@ -171,10 +171,10 @@ const styles = StyleSheet.create({
     padding: 0,
   },
 
-  topWrapper: {
-    height: disensions.height / 4,
-    width: disensions.width,
-    backgroundColor: "#BEDEBE",
+  bottomWrapper: {
+    height: dimensions.height / 4,
+    width: dimensions.width,
+    backgroundColor: "#e7f7fc",
     alignContent: "center",
     justifyContent: "center",
   },
@@ -182,15 +182,16 @@ const styles = StyleSheet.create({
   inputWrapper: {
     flexDirection: "row",
     justifyContent: "space-around",
-    alignItems: "center",
   },
 
-  TimeinputView: {
+  TimeInputView: {
     backgroundColor: "#F6F6F6",
     borderRadius: 10,
-    width: disensions.width / 4,
-    height: disensions.height / 14,
-    marginBottom: 30,
+    width: dimensions.width / 4.5,
+    height: dimensions.height / 13,
+    borderWidth: 1,
+    borderColor: "gray",
+    marginBottom: 10,
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
@@ -199,12 +200,18 @@ const styles = StyleSheet.create({
   ActionInputView: {
     backgroundColor: "#F6F6F6",
     borderRadius: 10,
-    width: disensions.width / 1.5,
-    height: disensions.height / 14,
-    marginBottom: 30,
+    width: dimensions.width / 1.5,
+    height: dimensions.height / 13,
+    borderWidth: 1,
+    borderColor: "gray",
+    marginBottom: 10,
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
+  },
+
+  TextInput: {
+    fontSize: 15,
   },
 
   inputButton: {
@@ -214,56 +221,85 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     backgroundColor: "#23A6F0",
-    borderRadius: 40,
-    width: disensions.width / 5,
-    height: disensions.height / 15,
+    borderRadius: 10,
+    width: dimensions.width / 5,
+    height: dimensions.height / 15,
     justifyContent: "center",
+    marginTop: 5,
+    marginBottom: 25,
   },
 
   buttonText: {
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: "bold",
     color: "white",
   },
-  taskWrapper: {
-    backgroundColor: "#CCFFCC",
 
-    width: disensions.width,
-    height: disensions.height - disensions.height / 4,
+  taskWrapper: {
+    backgroundColor: "#c0eaf8",
+    width: dimensions.width,
+    height: dimensions.height - dimensions.height / 2.75,
   },
 
   titleWrapper: {
     alignItems: "center",
-    marginTop: 40,
+    marginTop: 30,
+    paddingBottom: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: "gray",
+    marginHorizontal: 30,
   },
 
   title: {
-    fontSize: 30,
+    fontSize: 28,
     fontWeight: "bold",
     justifyContent: "center",
   },
 
   listItem: {
-    padding: 20,
+    padding: 15,
+    fontSize: 10,
     backgroundColor: "white",
     flexDirection: "row",
-    width: disensions.width * 0.9,
-    height: disensions.height / 10,
+    width: dimensions.width * 0.9,
+    height: dimensions.height / 10,
     alignItems: "center",
     justifyContent: "space-between",
-
     elevation: 12,
     borderRadius: 10,
-    marginVertical: 20,
+    marginVertical: 15,
   },
 
-  leftitem: {
-    flexDirection: "row",
-    alignItems: "center",
+  listItemTask: {
+    flexDirection: "column",
+    width: 200
+  },
+
+  taskText: {
+    fontSize: 20,
+    justifyContent: "flex-start",
+    fontWeight: "bold",
+  },
+
+  listItemDate: {
+    flexDirection: "column",
+    width: 80,
+    marginTop: 5,
+  },
+
+  dateText: {
+    fontSize: 15,
+    justifyContent: "flex-start",
+    fontWeight: "600",
   },
 
   taskList: {
-    marginTop: 20,
+    marginTop: 15,
     alignItems: "center",
   },
+
+  imageStyle: {
+    height: 30,
+    width: 30,
+  }
 });

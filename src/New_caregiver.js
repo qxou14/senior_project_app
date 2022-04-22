@@ -108,7 +108,7 @@ export default function Caregiver_content({ navigation }) {
       <View style={styles.firstLayer}>
         <Pressable
           style={styles.buttonSchedule}
-          onPress={() => navigation.navigate("Todo_Giver")}
+          onPress={() => navigation.navigate("Scheduler")}
         >
           <View style={styles.iconStyle}>
             <FontAwesome name="list-alt" size={100} />
