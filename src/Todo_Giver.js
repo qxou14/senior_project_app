@@ -9,15 +9,17 @@ import {
   Dimensions,
   TouchableHighlight,
   Image,
-  ScrollView,
+  KeyboardAvoidingView,
 } from "react-native";
 import React, { useEffect, useState } from "react";
+import { LinearGradient } from 'expo-linear-gradient';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const dimensions = Dimensions.get("screen");
 
 export default function Todo_Giver({ navigation }) {
   const [Item, setItem] = useState([]);
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState('Set Time');
   const [action, setAction] = useState("");
 
   useEffect(() => {
@@ -56,6 +58,8 @@ export default function Todo_Giver({ navigation }) {
       .catch((error) => {
         console.log("Error: ", error);
       });
+
+      setTime('Select Time');
   };
 
   const delete_info = (id) => {
@@ -113,8 +117,47 @@ export default function Todo_Giver({ navigation }) {
     );
   };
 
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = (date) => {
+    //console.log("A date has been picked: ", date);
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let am_pm = '';
+
+    if (hours == 0) {
+      hours = 12;
+      am_pm = 'AM';
+    } 
+    else if (hours > 0 && hours < 12) {am_pm = 'AM'}
+    else if (hours == 12) {am_pm = 'PM';}
+    else {
+      hours = hours - 12
+      am_pm = 'PM';
+    }
+
+    setTime(hours + ':' + minutes + ' ' + am_pm)
+    //console.log(hours + ':' + minutes + ' ' + am_pm)
+    hideDatePicker();
+  };
+
+
   return (
     <View style={styles.container}>
+      <LinearGradient
+        // Background Linear Gradient
+        colors={["#f5fcfe", "#b1e5f6"]}
+        style={styles.background}
+        start = {[0.1, 0.2]}
+      />
 
       <View style={styles.taskWrapper}>
         <View style={styles.titleWrapper}>
@@ -131,35 +174,41 @@ export default function Todo_Giver({ navigation }) {
         </View>
       </View>
 
-      <View style={styles.bottomWrapper}>
+      <KeyboardAvoidingView style={styles.bottomWrapper} behavior= "position">
         <View style={styles.inputWrapper}>
           <View style={styles.TimeInputView}>
-            <TextInput
-              placeholder="Time"
-              placeholderTextColor="black"
-              style={styles.TextInput}
-              onChangeText={(time) => setTime(time)}
-            />
+
+          <Pressable style={styles.button} onPress={showDatePicker}>
+            <Text style={styles.buttonText}> {time} </Text>
+          </Pressable>
+
+          <DateTimePickerModal
+            isVisible = {isDatePickerVisible}
+            mode = "time"
+            onConfirm = {handleConfirm}
+            onCancel = {hideDatePicker}
+          /> 
           </View>
 
           <View style={styles.task}>
             <View style={styles.ActionInputView}>
               <TextInput
                 style={styles.TextInput}
-                placeholder="Input task..."
+                placeholder="Enter task..."
                 placeholderTextColor="black"
+                fontWeight = "bold"
                 onChangeText={(action) => setAction(action)}
               />
             </View>
           </View>
-        </View>
-
-        <View style={styles.inputButton}>
-          <Pressable style={styles.button} onPress={add_info}>
-            <Text style={styles.buttonText}>Add</Text>
+          
+          <Pressable style={styles.addbutton} onPress={add_info}>
+            <Text style={styles.addbuttonText}>Add</Text>
           </Pressable>
+
         </View>
-      </View>
+      
+      </KeyboardAvoidingView>
 
     </View>
   );
@@ -168,15 +217,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    padding: 0,
+    //justifyContent: "flex-end",
+  },
+
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: "100%",
   },
 
   bottomWrapper: {
     height: dimensions.height / 4,
-    width: dimensions.width,
-    backgroundColor: "#e7f7fc",
-    alignContent: "center",
-    justifyContent: "center",
+    width: dimensions.width / 1.1,
+    flex: 1,
+    //backgroundColor: "#e7f7fc",
+    //alignContent: "center",
+    //justifyContent: "flex-end",
+    //position: "relative",
   },
 
   inputWrapper: {
@@ -185,29 +244,27 @@ const styles = StyleSheet.create({
   },
 
   TimeInputView: {
-    backgroundColor: "#F6F6F6",
+    backgroundColor: "white",
     borderRadius: 10,
     width: dimensions.width / 4.5,
-    height: dimensions.height / 13,
-    borderWidth: 1,
-    borderColor: "gray",
+    height: dimensions.height / 12,
     marginBottom: 10,
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
+    elevation: 8,
   },
 
   ActionInputView: {
-    backgroundColor: "#F6F6F6",
+    backgroundColor: "white",
     borderRadius: 10,
-    width: dimensions.width / 1.5,
-    height: dimensions.height / 13,
-    borderWidth: 1,
-    borderColor: "gray",
+    width: dimensions.width / 2,
+    height: dimensions.height / 12,
     marginBottom: 10,
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
+    elevation: 8,
   },
 
   TextInput: {
@@ -220,30 +277,47 @@ const styles = StyleSheet.create({
 
   button: {
     alignItems: "center",
-    backgroundColor: "#23A6F0",
+    backgroundColor: "white",
     borderRadius: 10,
     width: dimensions.width / 5,
     height: dimensions.height / 15,
     justifyContent: "center",
-    marginTop: 5,
-    marginBottom: 25,
   },
 
   buttonText: {
     fontSize: 15,
     fontWeight: "bold",
-    color: "white",
+    color: "#454946",
+  },
+
+  addbutton: {
+    alignItems: "center",
+    backgroundColor: "#63d37c",
+    borderRadius: 10,
+    width: dimensions.width / 6,
+    height: dimensions.height / 12,
+    justifyContent: "center",
+    marginTop: 0,
+    marginBottom: 25,
+    elevation: 5,
+    flexDirection: "row",
+  },
+
+  addbuttonText: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: "#454946",
   },
 
   taskWrapper: {
-    backgroundColor: "#c0eaf8",
+    //backgroundColor: "#c0eaf8",
     width: dimensions.width,
-    height: dimensions.height - dimensions.height / 2.75,
+    height: dimensions.height - dimensions.height / 2.8,
   },
 
   titleWrapper: {
     alignItems: "center",
-    marginTop: 30,
+    marginTop: 25,
     paddingBottom: 20,
     borderBottomWidth: 1,
     borderBottomColor: "gray",
@@ -251,8 +325,8 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 28,
-    fontWeight: "bold",
+    fontSize: 25,
+    fontWeight: "500",
     justifyContent: "center",
   },
 
@@ -265,7 +339,7 @@ const styles = StyleSheet.create({
     height: dimensions.height / 10,
     alignItems: "center",
     justifyContent: "space-between",
-    elevation: 12,
+    elevation: 5,
     borderRadius: 10,
     marginVertical: 15,
   },
@@ -296,10 +370,11 @@ const styles = StyleSheet.create({
   taskList: {
     marginTop: 15,
     alignItems: "center",
+    height: "70%",
   },
 
   imageStyle: {
-    height: 30,
-    width: 30,
+    height: 25,
+    width: 25,
   }
 });
