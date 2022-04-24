@@ -12,12 +12,20 @@ import Feather from "react-native-vector-icons/Feather";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { SafeAreaView } from "react-native-safe-area-context";
+import AppLoading from 'expo-app-loading';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useFonts, 
+         Montserrat_400Regular,
+         Montserrat_500Medium,
+         Montserrat_600SemiBold,
+         Montserrat_700Bold,
+       } from '@expo-google-fonts/montserrat';
 
 Feather.loadFont();
 MaterialCommunityIcons.loadFont();
 FontAwesome.loadFont();
 
-const disensions = Dimensions.get("screen");
+const dimensions = Dimensions.get("screen");
 
 export default function Caregiver_content({ navigation }) {
   const handleSignOut = () => {
@@ -79,8 +87,26 @@ export default function Caregiver_content({ navigation }) {
     }
   };
 
+  let [fontsLoaded] = useFonts({
+    Montserrat_400Regular,
+    Montserrat_600SemiBold,
+    Montserrat_500Medium,
+    Montserrat_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   return (
     <View style={styles.container}>
+
+      <LinearGradient
+        // Background Linear Gradient
+        colors={["#D1E9D1", "#D1E9D1"]}
+        style={styles.background}
+        start = {[0.0, 0.1]}
+      />  
       <SafeAreaView>
         <View style={styles.headerWrapper}>
           <View style={styles.left}>
@@ -145,6 +171,13 @@ export default function Caregiver_content({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: "100%",
+  },
   container: {
     flex: 1,
     backgroundColor: "#CCFFCC",
@@ -180,44 +213,46 @@ const styles = StyleSheet.create({
   buttonSchedule: {
     alignItems: "center",
     backgroundColor: "#68D8E7",
-    height: disensions.height * 0.18,
-    width: disensions.width * 0.9,
+    height: dimensions.height * 0.18,
+    width: dimensions.width * 0.9,
     flexDirection: "row",
     justifyContent: "center",
     borderRadius: 30,
-    borderWidth: 2,
+    borderWidth: 0.5,
     borderColor: "black",
+    elevation: 10,
   },
 
   buttonAlbum: {
     alignItems: "center",
     backgroundColor: "#FFFF9B",
-    height: disensions.height * 0.18,
-    width: disensions.width * 0.9,
+    height: dimensions.height * 0.18,
+    width: dimensions.width * 0.9,
     flexDirection: "row",
     justifyContent: "center",
     borderRadius: 30,
-    borderWidth: 2,
+    borderWidth: 0.5,
     borderColor: "black",
+    elevation: 10,
   },
 
   buttonMaps: {
     alignItems: "center",
-    backgroundColor: "#CCFFCC",
-    height: disensions.height * 0.18,
-    width: disensions.width * 0.9,
+    backgroundColor: "#A5DAFE",
+    height: dimensions.height * 0.18,
+    width: dimensions.width * 0.9,
     flexDirection: "row",
     justifyContent: "center",
     borderRadius: 30,
-    borderWidth: 2,
-    backgroundColor: "#FFFF9B",
-    backgroundColor: "#A5DAFE",
+    borderWidth: 0.5,
+    borderColor: "black",
+    elevation: 10,
   },
 
   buttonText: {
     marginTop: 5,
     fontSize: 35,
-    fontWeight: "bold",
+    fontFamily: "Montserrat_600SemiBold",
     letterSpacing: 0.25,
     color: "black",
     textAlign: "center",
@@ -233,9 +268,8 @@ const styles = StyleSheet.create({
   leftword: {
     marginTop: 5,
     fontSize: 20,
-    fontWeight: "bold",
     color: "black",
     textAlign: "center",
-    fontFamily: "Sans",
+    fontFamily: "Montserrat_600SemiBold"
   },
 });

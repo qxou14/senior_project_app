@@ -14,6 +14,13 @@ import {
 import React, { useEffect, useState } from "react";
 import { LinearGradient } from 'expo-linear-gradient';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import AppLoading from 'expo-app-loading';
+import { useFonts, 
+         Montserrat_400Regular,
+         Montserrat_500Medium,
+         Montserrat_600SemiBold,
+         Montserrat_700Bold,
+        } from '@expo-google-fonts/montserrat';
 
 const dimensions = Dimensions.get("screen");
 
@@ -149,6 +156,16 @@ export default function Todo_Giver({ navigation }) {
     hideDatePicker();
   };
 
+  let [fontsLoaded] = useFonts({
+    Montserrat_400Regular,
+    Montserrat_600SemiBold,
+    Montserrat_500Medium,
+    Montserrat_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
 
   return (
     <View style={styles.container}>
@@ -190,20 +207,18 @@ export default function Todo_Giver({ navigation }) {
           /> 
           </View>
 
-          <View style={styles.task}>
-            <View style={styles.ActionInputView}>
-              <TextInput
-                style={styles.TextInput}
-                placeholder="Enter task..."
-                placeholderTextColor="black"
-                fontWeight = "bold"
-                onChangeText={(action) => setAction(action)}
-              />
-            </View>
+         
+          <View style={styles.ActionInputView}>
+            <TextInput
+              style={styles.buttonText}
+              placeholder="Enter task..."
+              placeholderTextColor="black"
+              onChangeText={(action) => setAction(action)}
+            />
           </View>
           
           <Pressable style={styles.addbutton} onPress={add_info}>
-            <Text style={styles.addbuttonText}>Add</Text>
+            <Text style={styles.addbuttonText}> Add </Text>
           </Pressable>
 
         </View>
@@ -246,7 +261,7 @@ const styles = StyleSheet.create({
   TimeInputView: {
     backgroundColor: "white",
     borderRadius: 10,
-    width: dimensions.width / 4.5,
+    width: dimensions.width / 5,
     height: dimensions.height / 12,
     marginBottom: 10,
     alignItems: "center",
@@ -258,17 +273,13 @@ const styles = StyleSheet.create({
   ActionInputView: {
     backgroundColor: "white",
     borderRadius: 10,
-    width: dimensions.width / 2,
+    width: dimensions.width / 1.95,
     height: dimensions.height / 12,
     marginBottom: 10,
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
     elevation: 8,
-  },
-
-  TextInput: {
-    fontSize: 15,
   },
 
   inputButton: {
@@ -286,7 +297,7 @@ const styles = StyleSheet.create({
 
   buttonText: {
     fontSize: 15,
-    fontWeight: "bold",
+    fontFamily: 'Montserrat_500Medium',
     color: "#454946",
   },
 
@@ -294,7 +305,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#63d37c",
     borderRadius: 10,
-    width: dimensions.width / 6,
+    width: dimensions.width / 7,
     height: dimensions.height / 12,
     justifyContent: "center",
     marginTop: 0,
@@ -305,8 +316,8 @@ const styles = StyleSheet.create({
 
   addbuttonText: {
     fontSize: 15,
-    fontWeight: "bold",
-    color: "#454946",
+    color: "black",
+    fontFamily: "Montserrat_600SemiBold",
   },
 
   taskWrapper: {
@@ -325,9 +336,9 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 25,
-    fontWeight: "500",
+    fontSize: 26,
     justifyContent: "center",
+    fontFamily: 'Montserrat_500Medium',
   },
 
   listItem: {
@@ -346,13 +357,13 @@ const styles = StyleSheet.create({
 
   listItemTask: {
     flexDirection: "column",
-    width: 200
+    width: 200,
   },
 
   taskText: {
     fontSize: 20,
     justifyContent: "flex-start",
-    fontWeight: "bold",
+    fontFamily: "Montserrat_600SemiBold",
   },
 
   listItemDate: {
@@ -364,7 +375,7 @@ const styles = StyleSheet.create({
   dateText: {
     fontSize: 15,
     justifyContent: "flex-start",
-    fontWeight: "600",
+    fontFamily: "Montserrat_400Regular",
   },
 
   taskList: {

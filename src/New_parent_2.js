@@ -15,13 +15,20 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { storageBucket } from "../keys";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ButtonItem from "./compnents/ButtonItem";
-import { useFonts } from "expo-font";
+import AppLoading from 'expo-app-loading';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useFonts, 
+         Montserrat_400Regular,
+         Montserrat_500Medium,
+         Montserrat_600SemiBold,
+         Montserrat_700Bold,
+       } from '@expo-google-fonts/montserrat';
 
 Feather.loadFont();
 MaterialCommunityIcons.loadFont();
 FontAwesome.loadFont();
 
-const disensions = Dimensions.get("screen");
+const dimensions = Dimensions.get("screen");
 
 export default function Patient_content2({ navigation }) {
   const handleSignOut = () => {
@@ -34,15 +41,27 @@ export default function Patient_content2({ navigation }) {
       .catch((error) => alert(error.message));
   };
 
-  const [loaded] = useFonts({
-    Sans: require("../assets/fonts/OpenSans-Bold.ttf"),
+  let [fontsLoaded] = useFonts({
+    Montserrat_400Regular,
+    Montserrat_600SemiBold,
+    Montserrat_500Medium,
+    Montserrat_700Bold,
   });
 
-  if (!loaded) {
-    return null;
+  if (!fontsLoaded) {
+    return <AppLoading />;
   }
+
   return (
     <View style={styles.container}>
+
+      <LinearGradient
+          // Background Linear Gradient
+          colors={["#f5fcfe", "#D7FFEB"]}
+          style={styles.background}
+          start = {[0.0, 0.1]}
+      />
+
       <SafeAreaView>
         <View style={styles.headerWrapper}>
           <View style={styles.left}>
@@ -99,6 +118,13 @@ export default function Patient_content2({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: "100%",
+  },
   container: {
     flex: 1,
     backgroundColor: "#CCFFCC",
@@ -133,19 +159,19 @@ const styles = StyleSheet.create({
 
   buttonAlbums: {
     alignItems: "center",
-    backgroundColor: "#CCFFCC",
-    height: disensions.height * 0.18,
-    width: disensions.width * 0.9,
+    height: dimensions.height * 0.18,
+    width: dimensions.width * 0.9,
     flexDirection: "row",
     justifyContent: "center",
     borderRadius: 30,
-    borderWidth: 2,
+    borderWidth: 0.5,
     backgroundColor: "#FFFF9B",
+    elevation: 10,
   },
   buttonReminders: {
     alignItems: "center",
-    height: disensions.height * 0.18,
-    width: disensions.width * 0.9,
+    height: dimensions.height * 0.18,
+    width: dimensions.width * 0.9,
     flexDirection: "row",
     justifyContent: "center",
     borderRadius: 30,
@@ -156,11 +182,10 @@ const styles = StyleSheet.create({
   buttonText: {
     marginTop: 5,
     fontSize: 35,
-    fontWeight: "bold",
+    fontFamily: "Montserrat_600SemiBold",
     letterSpacing: 0.25,
     color: "black",
     textAlign: "center",
-    fontFamily: "Sans",
   },
 
   left: {
@@ -173,9 +198,8 @@ const styles = StyleSheet.create({
   leftword: {
     marginTop: 5,
     fontSize: 20,
-    fontWeight: "bold",
     color: "black",
     textAlign: "center",
-    fontFamily: "Sans",
+    fontFamily: "Montserrat_600SemiBold",
   },
 });

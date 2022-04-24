@@ -13,10 +13,18 @@ import Checkbox from "expo-checkbox";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Foundation from "react-native-vector-icons/Foundation";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import { LinearGradient } from 'expo-linear-gradient';
+import AppLoading from 'expo-app-loading';
+import { useFonts, 
+         Montserrat_400Regular,
+         Montserrat_500Medium,
+         Montserrat_600SemiBold,
+         Montserrat_700Bold,
+        } from '@expo-google-fonts/montserrat';
 
 Foundation.loadFont();
 MaterialIcons.loadFont();
-const disensions = Dimensions.get("screen");
+const dimensions = Dimensions.get("screen");
 
 export default function Todo({ navigation }) {
   const [Item, setItem] = useState([]);
@@ -72,20 +80,22 @@ export default function Todo({ navigation }) {
             >
               <Checkbox style={styles.checkbox} disabled value={todo.check} />
             </Pressable>
-            <Text style={{ fontWeight: "bold", fontSize: 20 }}>
-              {todo.key}{" "}
+          </View>
+
+          <View style = {styles.middleitem}>
+            <Text
+              style={{
+                fontFamily: "Montserrat_600SemiBold",
+                fontSize: 20,
+                textDecorationLine: todo?.check ? "line-through" : "none",
+              }}>
+              {todo.Action}{" "}
             </Text>
           </View>
 
           <View style={styles.rightitem}>
-            <Text
-              style={{
-                fontWeight: "bold",
-                fontSize: 20,
-                textDecorationLine: todo?.check ? "line-through" : "none",
-              }}
-            >
-              {todo.Action}{" "}
+            <Text style={{fontSize: 18, fontFamily: "Montserrat_600SemiBold" }}>
+              {todo.key}{" "}
             </Text>
           </View>
         </View>
@@ -93,8 +103,27 @@ export default function Todo({ navigation }) {
     );
   };
 
+  let [fontsLoaded] = useFonts({
+    Montserrat_400Regular,
+    Montserrat_600SemiBold,
+    Montserrat_500Medium,
+    Montserrat_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   return (
     <View style={styles.container}>
+
+      <LinearGradient
+        // Background Linear Gradient
+        colors={["#f5fcfe", "#b1e5f6"]}
+        style={styles.background}
+        start = {[0.1, 0.2]}
+      />
+
       <View style={styles.topContainer}>
         <Foundation name="calendar" size={56} style={styles.calendar} />
         <View style={styles.dataWrapper}>
@@ -106,7 +135,7 @@ export default function Todo({ navigation }) {
 
       <FlatList
         data={Item}
-        showsVerticalScrollIndicator={false}
+        showsVerticalScrollIndicator={true}
         contentContainerStyle={{ paddingBottom: 100 }}
         renderItem={({ item }) => <ListItem todo={item} />}
       />
@@ -122,9 +151,17 @@ const styles = StyleSheet.create({
     padding: 0,
   },
 
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: "100%",
+  },
+
   topContainer: {
-    height: disensions.height / 4,
-    width: disensions.width,
+    height: dimensions.height / 4,
+    width: dimensions.width,
     alignContent: "center",
     justifyContent: "center",
   },
@@ -136,8 +173,8 @@ const styles = StyleSheet.create({
   },
 
   dateStyle: {
-    fontWeight: "bold",
-    fontSize: 35,
+    fontSize: 30,
+    fontFamily: "Montserrat_500Medium",
   },
   calendar: {
     textAlign: "center",
@@ -147,11 +184,10 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: "white",
     flexDirection: "row",
-    width: disensions.width * 0.9,
-    height: disensions.height / 10,
+    width: dimensions.width * 0.9,
+    height: dimensions.height / 8,
     alignItems: "center",
     justifyContent: "space-between",
-
     elevation: 12,
     borderRadius: 10,
     marginVertical: 20,
@@ -160,6 +196,10 @@ const styles = StyleSheet.create({
   leftitem: {
     flexDirection: "row",
     alignItems: "center",
+  },
+
+  middleitem: {
+    width: "55%",
   },
 
   checkbox: {
