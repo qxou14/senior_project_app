@@ -12,6 +12,14 @@ import Input_button from "./Input_button";
 import { useEffect, useState } from "react";
 import { auth } from "../firebase";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import AppLoading from 'expo-app-loading';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useFonts, 
+         Montserrat_400Regular,
+         Montserrat_500Medium,
+         Montserrat_600SemiBold,
+         Montserrat_700Bold,
+       } from '@expo-google-fonts/montserrat';
 
 export default function SignIn({ navigation }) {
   //states for email and password
@@ -53,8 +61,26 @@ export default function SignIn({ navigation }) {
     }
   };
 
+  let [fontsLoaded] = useFonts({
+    Montserrat_400Regular,
+    Montserrat_600SemiBold,
+    Montserrat_500Medium,
+    Montserrat_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   return (
     <View style={styles.container}>
+      
+      <LinearGradient
+          // Background Linear Gradient
+          colors={["#f5fcfe", "#CDFCAD"]}
+          style={styles.background}
+          start = {[0.0, 0.05]}
+        />
 
       <View style = {styles.topContainer}>
         <Image style={styles.logo} source={require("../assets/logo.png")}></Image>
@@ -65,7 +91,7 @@ export default function SignIn({ navigation }) {
         <TextInput
           style={styles.TextInput}
           placeholder="Username"
-          placeholderTextColor="green"
+          placeholderTextColor="black"
           onChangeText={(email) => setEmail(email)}
         />
       </View>
@@ -74,7 +100,7 @@ export default function SignIn({ navigation }) {
         <TextInput
           style={styles.TextInput}
           placeholder="Password"
-          placeholderTextColor="green"
+          placeholderTextColor="black"
           secureTextEntry={hidePass}
           onChangeText={(password) => setPassword(password)}
         />
@@ -105,7 +131,14 @@ export default function SignIn({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: "100%",
+  },
+
   topContainer: {
     top: "10%",
     alignItems: "center",
@@ -113,8 +146,8 @@ const styles = StyleSheet.create({
   
   title: {
     color: "#0081A7",
-    fontSize: 25,
-    fontWeight: "700",
+    fontSize: 30,
+    fontFamily: "Montserrat_500Medium",
     paddingBottom: 60,
     marginBottom: 50,
   },
@@ -126,7 +159,7 @@ const styles = StyleSheet.create({
   
   container: {
     flex: 1,
-    backgroundColor: "#CCFFCC",
+    backgroundColor: "#CDFCE9",
     alignItems: "center",
   },
 
@@ -138,6 +171,8 @@ const styles = StyleSheet.create({
   inputView: {
     backgroundColor: "#F6F6F6",
     borderRadius: 5,
+    borderWidth: 0.3,
+    borderColor: "black",
     width: "75%",
     height: 60,
     marginBottom: 20,
@@ -148,11 +183,12 @@ const styles = StyleSheet.create({
   },
 
   TextInput: {
-    fontWeight: "bold",
+    fontFamily: "Montserrat_500Medium",
     height: 50,
     flex: 1,
     padding: 10,
     fontSize: 15,
+    color: "black",
   },
 
   button: {
@@ -160,13 +196,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#5DB075",
     paddingVertical: 15,
     paddingHorizontal: 120,
-    borderRadius: 30,
+    borderRadius: 25,
     marginBottom: 10,
   },
 
   buttonText: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontFamily: "Montserrat_700Bold",
     letterSpacing: 0.25,
     color: "white",
   },
