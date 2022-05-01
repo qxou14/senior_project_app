@@ -1,17 +1,25 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, Pressable, Text, TextInput, Image } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Pressable,
+  Text,
+  TextInput,
+  Image,
+} from "react-native";
 import Input_button from "./Input_button";
 import { useEffect, useState } from "react";
 import { auth } from "../firebase";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import AppLoading from 'expo-app-loading';
-import { LinearGradient } from 'expo-linear-gradient';
-import { useFonts, 
-         Montserrat_400Regular,
-         Montserrat_500Medium,
-         Montserrat_600SemiBold,
-         Montserrat_700Bold,
-       } from '@expo-google-fonts/montserrat';
+import AppLoading from "expo-app-loading";
+import { LinearGradient } from "expo-linear-gradient";
+import {
+  useFonts,
+  Montserrat_400Regular,
+  Montserrat_500Medium,
+  Montserrat_600SemiBold,
+  Montserrat_700Bold,
+} from "@expo-google-fonts/montserrat";
 
 export default function SignIn({ navigation }) {
   //states for email and password
@@ -66,16 +74,18 @@ export default function SignIn({ navigation }) {
 
   return (
     <View style={styles.container}>
-      
       <LinearGradient
-          // Background Linear Gradient
-          colors={["#f5fcfe", "#CDFCAD"]}
-          style={styles.background}
-          start = {[0.0, 0.05]}
-        />
+        // Background Linear Gradient
+        colors={["#f5fcfe", "#CDFCAD"]}
+        style={styles.background}
+        start={[0.0, 0.05]}
+      />
 
-      <View style = {styles.topContainer}>
-        <Image style={styles.logo} source={require("../assets/logo.png")}></Image>
+      <View style={styles.topContainer}>
+        <Image
+          style={styles.logo}
+          source={require("../assets/logo.png")}
+        ></Image>
         <Text style={styles.title}>Caregiver Sign-In</Text>
       </View>
 
@@ -85,6 +95,7 @@ export default function SignIn({ navigation }) {
           placeholder="Username"
           placeholderTextColor="black"
           onChangeText={(email) => setEmail(email)}
+          autoCapitalize="none"
         />
       </View>
 
@@ -124,7 +135,7 @@ export default function SignIn({ navigation }) {
 
 const styles = StyleSheet.create({
   background: {
-    position: 'absolute',
+    position: "absolute",
     left: 0,
     right: 0,
     top: 0,
@@ -135,7 +146,7 @@ const styles = StyleSheet.create({
     top: "10%",
     alignItems: "center",
   },
-  
+
   title: {
     color: "#0081A7",
     fontSize: 25,
@@ -148,7 +159,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
   },
-  
+
   container: {
     flex: 1,
     backgroundColor: "#CCFFCC",

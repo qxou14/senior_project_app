@@ -1,10 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Pressable,
-} from "react-native";
+import { StyleSheet, Text, View, TextInput, Pressable } from "react-native";
 import { auth } from "../firebase";
 import { useState } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -65,6 +59,7 @@ export default function Register() {
           placeholder="Enter email"
           placeholderTextColor="green"
           onChangeText={(email) => setEmail(email)}
+          autoCapitalize="none"
         />
       </View>
       <View style={styles.inputView}>

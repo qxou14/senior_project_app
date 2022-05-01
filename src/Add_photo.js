@@ -5,16 +5,18 @@ import {
   Text,
   Image,
   ActivityIndicator,
+  TextInput,
+  Alert,
 } from "react-native";
 import { useEffect, useState } from "react";
 
 import * as ImagePicker from "expo-image-picker";
-import { storage, firebase } from "../firebase";
+import { storage, firebase, auth } from "../firebase";
 
 export default function Add_photo({ navigation }) {
   const [image, setImage] = useState(null);
   const [uploading, setUploading] = useState(false);
-  const [response, setResponse] = useState("");
+  const [description, setDescription] = useState(null);
 
   const select_image = async () => {
     let res = await ImagePicker.launchImageLibraryAsync({
@@ -67,7 +69,25 @@ export default function Add_photo({ navigation }) {
         snapshot.snapshot.ref.getDownloadURL().then((url) => {
           setUploading(false);
           console.log("download url : ", url);
+          firebase
+            .firestore()
+            .collection("album")
+            .add({
+              user: auth.currentUser.email,
+              Url: url,
+              Description: description,
+            })
+            .then(() => {
+              setImage(url);
+            });
           blob.close();
+
+          Alert.alert(
+            "Upload Successfully!",
+            "The image and description have been upload Successfully!"
+          );
+          setDescription("");
+
           return url;
         });
       }
@@ -76,10 +96,20 @@ export default function Add_photo({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <Image source={{ uri: image }} style={{ width: "90%", height: 250 }} />
+
+      <View style={styles.describeWrapper}>
+        <TextInput
+          style={styles.describe}
+          placeholder="Enter the description"
+          multiline={true}
+          onChangeText={setDescription}
+          value={description}
+        ></TextInput>
+      </View>
       <Pressable style={styles.button} onPress={select_image}>
         <Text style={styles.buttonText}>Add</Text>
       </Pressable>
-      <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
 
       {!uploading ? (
         <Pressable style={styles.button} onPress={postImage}>
@@ -98,19 +128,24 @@ const styles = StyleSheet.create({
     backgroundColor: "#CCFFCC",
     alignItems: "center",
     justifyContent: "center",
-    padding: 0,
   },
 
-  logo: {
-    width: 200,
-    height: 200,
+  describeWrapper: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#CCFFCC",
+    borderBottomColor: "#000000",
+    borderBottomWidth: 1,
+    marginTop: 40,
+    marginBottom: 20,
   },
 
-  title: {
-    color: "#0081A7",
-    fontSize: 40,
-    fontWeight: "bold",
-    paddingBottom: 60,
+  describe: {
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: 25,
+    textAlign: "center",
+    width: "90%",
   },
 
   button: {

@@ -1,9 +1,5 @@
-import {
-  StyleSheet,
-  View,
-  Pressable,
-  Text,
-} from "react-native";
+import { StyleSheet, View, Pressable, Text } from "react-native";
+import { useEffect, useState } from "react";
 
 export default function C_Album({ navigation }) {
   return (

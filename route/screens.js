@@ -29,7 +29,11 @@ const AppNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name="Patient SignIn" component={SignIn} />
         <Stack.Screen name="CareGiver SignIn" component={SignInGiver} />
         <Stack.Screen name="Register" component={Register} />
