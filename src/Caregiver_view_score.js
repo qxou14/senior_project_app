@@ -33,10 +33,10 @@ export default function View_Score({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text>Previous Score: {score}</Text>
+      <Text style={styles.textStyle}>Previous Score: {score}</Text>
       <Text></Text>
 
-      <Text>
+      <Text style={styles.textStyle}>
         Previous time attempted: {year}/{month}/{date}, {hours}:{min}
       </Text>
     </View>
@@ -47,52 +47,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#CCFFCC",
-  },
-  headerWrapper: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingTop: 20,
-    marginBottom: 20,
     alignItems: "center",
-    paddingHorizontal: 40,
-  },
-
-  button: {
-    alignItems: "center",
-    backgroundColor: "#5DB075",
-    height: 125,
-    width: "46%",
     justifyContent: "center",
-    borderRadius: 35,
   },
 
-  iconStyle: {
-    marginRight: 40,
-  },
-
-  buttonText: {
-    marginTop: 5,
-    fontSize: 30,
+  textStyle: {
+    fontSize: 18,
     fontWeight: "bold",
-    letterSpacing: 0.25,
-    color: "black",
-    textAlign: "center",
-    fontFamily: "Sans",
-  },
-
-  left: {
-    alignItems: "center",
-  },
-  right: {
-    alignItems: "center",
-  },
-
-  leftword: {
-    marginTop: 5,
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "black",
-    textAlign: "center",
-    fontFamily: "Sans",
   },
 });

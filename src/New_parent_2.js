@@ -15,14 +15,15 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { storageBucket } from "../keys";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ButtonItem from "./compnents/ButtonItem";
-import AppLoading from 'expo-app-loading';
-import { LinearGradient } from 'expo-linear-gradient';
-import { useFonts, 
-         Montserrat_400Regular,
-         Montserrat_500Medium,
-         Montserrat_600SemiBold,
-         Montserrat_700Bold,
-       } from '@expo-google-fonts/montserrat';
+import AppLoading from "expo-app-loading";
+import { LinearGradient } from "expo-linear-gradient";
+import {
+  useFonts,
+  Montserrat_400Regular,
+  Montserrat_500Medium,
+  Montserrat_600SemiBold,
+  Montserrat_700Bold,
+} from "@expo-google-fonts/montserrat";
 
 Feather.loadFont();
 MaterialCommunityIcons.loadFont();
@@ -54,12 +55,11 @@ export default function Patient_content2({ navigation }) {
 
   return (
     <View style={styles.container}>
-
       <LinearGradient
-          // Background Linear Gradient
-          colors={["#f5fcfe", "#D7FFEB"]}
-          style={styles.background}
-          start = {[0.0, 0.1]}
+        // Background Linear Gradient
+        colors={["#f5fcfe", "#D7FFEB"]}
+        style={styles.background}
+        start={[0.0, 0.1]}
       />
 
       <SafeAreaView>
@@ -105,7 +105,7 @@ export default function Patient_content2({ navigation }) {
       <View style={styles.firstLayer}>
         <Pressable
           style={styles.buttonAlbums}
-          onPress={() => console.log("album")}
+          onPress={() => navigation.navigate("Paitient_album")}
         >
           <View style={styles.iconStyle}>
             <FontAwesome name="file-picture-o" size={100} />
@@ -119,7 +119,7 @@ export default function Patient_content2({ navigation }) {
 
 const styles = StyleSheet.create({
   background: {
-    position: 'absolute',
+    position: "absolute",
     left: 0,
     right: 0,
     top: 0,
