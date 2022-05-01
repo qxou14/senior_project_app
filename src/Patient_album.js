@@ -6,7 +6,6 @@ import {
   FlatList,
   Image,
   Dimensions,
-  TextInput,
 } from "react-native";
 import { useEffect, useState } from "react";
 import { auth, db } from "../firebase";
@@ -14,7 +13,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 const dimensions = Dimensions.get("screen");
 
-export default function C_Album({ navigation }) {
+export default function Patient_album({ navigation }) {
   const [Item, setItem] = useState([]);
 
   useEffect(() => {
@@ -59,14 +58,8 @@ export default function C_Album({ navigation }) {
       />
       <View style={styles.topWrapper}>
         <View style={styles.titleWrapper}>
-          <Text style={styles.title}> Album Management </Text>
+          <Text style={styles.title}> Album </Text>
         </View>
-        <Pressable
-          style={styles.button}
-          onPress={() => navigation.navigate("Add_photo")}
-        >
-          <Text style={styles.buttonText}>add photo</Text>
-        </Pressable>
       </View>
 
       <View style={styles.card}>
@@ -96,7 +89,7 @@ const styles = StyleSheet.create({
   },
   topWrapper: {
     width: dimensions.width,
-    height: dimensions.height / 4,
+    height: dimensions.height / 6,
   },
 
   card: {

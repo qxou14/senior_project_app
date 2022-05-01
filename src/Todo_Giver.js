@@ -12,21 +12,22 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from "expo-linear-gradient";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import AppLoading from 'expo-app-loading';
-import { useFonts, 
-         Montserrat_400Regular,
-         Montserrat_500Medium,
-         Montserrat_600SemiBold,
-         Montserrat_700Bold,
-        } from '@expo-google-fonts/montserrat';
+import AppLoading from "expo-app-loading";
+import {
+  useFonts,
+  Montserrat_400Regular,
+  Montserrat_500Medium,
+  Montserrat_600SemiBold,
+  Montserrat_700Bold,
+} from "@expo-google-fonts/montserrat";
 
 const dimensions = Dimensions.get("screen");
 
 export default function Todo_Giver({ navigation }) {
   const [Item, setItem] = useState([]);
-  const [time, setTime] = useState('Set Time');
+  const [time, setTime] = useState("Set Time");
   const [action, setAction] = useState("");
 
   useEffect(() => {
@@ -66,7 +67,7 @@ export default function Todo_Giver({ navigation }) {
         console.log("Error: ", error);
       });
 
-      setTime('Select Time');
+    setTime("Select Time");
   };
 
   const delete_info = (id) => {
@@ -98,27 +99,26 @@ export default function Todo_Giver({ navigation }) {
     return (
       <View>
         <View style={styles.listItem}>
-
-          <View style = {styles.listItemLeftContainer}>
-
+          <View style={styles.listItemLeftContainer}>
             <View style={styles.listItemTask}>
-              <Text style={styles.taskText}>
-                {todo.Action}{" "}
-              </Text>
+              <Text style={styles.taskText}>{todo.Action} </Text>
             </View>
 
             <View style={styles.listItemDate}>
-              <Text style={styles.dateText}>
-                {todo.key}{" "}
-              </Text>
+              <Text style={styles.dateText}>{todo.key} </Text>
             </View>
-
           </View>
-          
-          <TouchableHighlight onPress={() => {delete_info(todo.key);}}>
-            <Image style = {styles.imageStyle} source = {require("../assets/trash.png")}/>
-          </TouchableHighlight>
 
+          <TouchableHighlight
+            onPress={() => {
+              delete_info(todo.key);
+            }}
+          >
+            <Image
+              style={styles.imageStyle}
+              source={require("../assets/trash.png")}
+            />
+          </TouchableHighlight>
         </View>
       </View>
     );
@@ -138,20 +138,21 @@ export default function Todo_Giver({ navigation }) {
     //console.log("A date has been picked: ", date);
     let hours = date.getHours();
     let minutes = date.getMinutes();
-    let am_pm = '';
+    let am_pm = "";
 
     if (hours == 0) {
       hours = 12;
-      am_pm = 'AM';
-    } 
-    else if (hours > 0 && hours < 12) {am_pm = 'AM'}
-    else if (hours == 12) {am_pm = 'PM';}
-    else {
-      hours = hours - 12
-      am_pm = 'PM';
+      am_pm = "AM";
+    } else if (hours > 0 && hours < 12) {
+      am_pm = "AM";
+    } else if (hours == 12) {
+      am_pm = "PM";
+    } else {
+      hours = hours - 12;
+      am_pm = "PM";
     }
 
-    setTime(hours + ':' + minutes + ' ' + am_pm)
+    setTime(hours + ":" + minutes + " " + am_pm);
     //console.log(hours + ':' + minutes + ' ' + am_pm)
     hideDatePicker();
   };
@@ -173,7 +174,7 @@ export default function Todo_Giver({ navigation }) {
         // Background Linear Gradient
         colors={["#f5fcfe", "#b1e5f6"]}
         style={styles.background}
-        start = {[0.1, 0.2]}
+        start={[0.1, 0.2]}
       />
 
       <View style={styles.taskWrapper}>
@@ -191,23 +192,21 @@ export default function Todo_Giver({ navigation }) {
         </View>
       </View>
 
-      <KeyboardAvoidingView style={styles.bottomWrapper} behavior= "position">
+      <KeyboardAvoidingView style={styles.bottomWrapper} behavior="position">
         <View style={styles.inputWrapper}>
           <View style={styles.TimeInputView}>
+            <Pressable style={styles.button} onPress={showDatePicker}>
+              <Text style={styles.buttonText}> {time} </Text>
+            </Pressable>
 
-          <Pressable style={styles.button} onPress={showDatePicker}>
-            <Text style={styles.buttonText}> {time} </Text>
-          </Pressable>
-
-          <DateTimePickerModal
-            isVisible = {isDatePickerVisible}
-            mode = "time"
-            onConfirm = {handleConfirm}
-            onCancel = {hideDatePicker}
-          /> 
+            <DateTimePickerModal
+              isVisible={isDatePickerVisible}
+              mode="time"
+              onConfirm={handleConfirm}
+              onCancel={hideDatePicker}
+            />
           </View>
 
-         
           <View style={styles.ActionInputView}>
             <TextInput
               style={styles.buttonText}
@@ -216,15 +215,12 @@ export default function Todo_Giver({ navigation }) {
               onChangeText={(action) => setAction(action)}
             />
           </View>
-          
+
           <Pressable style={styles.addbutton} onPress={add_info}>
             <Text style={styles.addbuttonText}> Add </Text>
           </Pressable>
-
         </View>
-      
       </KeyboardAvoidingView>
-
     </View>
   );
 }
@@ -236,7 +232,7 @@ const styles = StyleSheet.create({
   },
 
   background: {
-    position: 'absolute',
+    position: "absolute",
     left: 0,
     right: 0,
     top: 0,
@@ -297,7 +293,7 @@ const styles = StyleSheet.create({
 
   buttonText: {
     fontSize: 15,
-    fontFamily: 'Montserrat_500Medium',
+    fontFamily: "Montserrat_500Medium",
     color: "#454946",
   },
 
@@ -338,7 +334,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 26,
     justifyContent: "center",
-    fontFamily: 'Montserrat_500Medium',
+    fontFamily: "Montserrat_500Medium",
   },
 
   listItem: {
@@ -387,5 +383,5 @@ const styles = StyleSheet.create({
   imageStyle: {
     height: 25,
     width: 25,
-  }
+  },
 });

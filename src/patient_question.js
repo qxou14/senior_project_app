@@ -119,12 +119,14 @@ export default function Patient_question({ navigation }) {
           <View>
             <Text style={styles.question}>
               You got {score} out of {Question_sets.length}
-              <Pressable style={styles.choiceList} onPress={try_again}>
-                <Text style={styles.buttonText}>Try again</Text>
-              </Pressable>
-              <Pressable style={styles.choiceList} onPress={update}>
-                <Text style={styles.buttonText}>Exit</Text>
-              </Pressable>
+              <View>
+                <Pressable style={styles.choiceList} onPress={try_again}>
+                  <Text style={styles.buttonText}>Try again</Text>
+                </Pressable>
+                <Pressable style={styles.choiceList} onPress={update}>
+                  <Text style={styles.buttonText}>Exit</Text>
+                </Pressable>
+              </View>
             </Text>
           </View>
         )}
