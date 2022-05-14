@@ -129,11 +129,14 @@ const styles = StyleSheet.create({
   },
 
   descriptionText: {
-    fontSize: 22,
+    fontSize: 40,
     fontWeight: "bold",
   },
   descriptionWrapper: {
     alignItems: "center",
     justifyContent: "center",
+    marginBottom: 40,
+    borderBottomWidth: 1,
+    borderBottomColor: "black",
   },
 });

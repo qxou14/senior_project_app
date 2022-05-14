@@ -1,10 +1,4 @@
-import {
-  StyleSheet,
-  View,
-  Pressable,
-  Text,
-  SafeAreaView,
-} from "react-native";
+import { StyleSheet, View, Pressable, Text, SafeAreaView } from "react-native";
 import { auth, db } from "../firebase";
 import Feather from "react-native-vector-icons/Feather";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -81,6 +75,7 @@ export default function Caregiver_content({ navigation }) {
             name="settings"
             size={56}
             onPress={() => console.log("From Register")}
+            onPress={() => navigation.navigate("Profile_caregiver")}
           />
           <MaterialCommunityIcons
             name="logout"
