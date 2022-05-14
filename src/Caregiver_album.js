@@ -7,12 +7,15 @@ import {
   Image,
   Dimensions,
   TextInput,
+  TouchableHighlight,
 } from "react-native";
 import { useEffect, useState } from "react";
 import { auth, db } from "../firebase";
 import { LinearGradient } from "expo-linear-gradient";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 const dimensions = Dimensions.get("screen");
+MaterialIcons.loadFont();
 
 export default function C_Album({ navigation }) {
   const [Item, setItem] = useState([]);
@@ -35,6 +38,18 @@ export default function C_Album({ navigation }) {
     });
   }, []);
 
+  const delete_info = (id) => {
+    db.collection("album")
+      .doc(id)
+      .delete()
+      .then(() => {
+        console.log("document deleted");
+      })
+      .catch((error) => {
+        console.log("Error: ", error);
+      });
+  };
+
   const ListItem = ({ album }) => {
     return (
       <View>
@@ -44,6 +59,16 @@ export default function C_Album({ navigation }) {
         />
         <View style={styles.descriptionWrapper}>
           <Text style={styles.descriptionText}>{album.description}</Text>
+          <TouchableHighlight
+            onPress={() => {
+              delete_info(album.key);
+            }}
+          >
+            <Image
+              style={styles.imageStyle}
+              source={require("../assets/trash.png")}
+            />
+          </TouchableHighlight>
         </View>
       </View>
     );
@@ -61,12 +86,13 @@ export default function C_Album({ navigation }) {
         <View style={styles.titleWrapper}>
           <Text style={styles.title}> Album Management </Text>
         </View>
-        <Pressable
-          style={styles.button}
-          onPress={() => navigation.navigate("Add_photo")}
-        >
-          <Text style={styles.buttonText}>add photo</Text>
-        </Pressable>
+        <View style={{ alignItems: "center", justifyContent: "center" }}>
+          <MaterialIcons
+            name="add-a-photo"
+            size={60}
+            onPress={() => navigation.navigate("Add_photo")}
+          />
+        </View>
       </View>
 
       <View style={styles.card}>
@@ -102,7 +128,6 @@ const styles = StyleSheet.create({
   card: {
     width: "100%",
     borderRadius: 15,
-    paddingBottom: 20,
   },
 
   button: {
@@ -140,7 +165,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   descriptionWrapper: {
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 40,
+    borderBottomWidth: 1,
+    borderBottomColor: "black",
+  },
+  imageStyle: {
+    height: 25,
+    width: 25,
   },
 });

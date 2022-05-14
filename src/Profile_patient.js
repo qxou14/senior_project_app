@@ -73,56 +73,11 @@ export default function Profile_patient(props) {
     <View style={styles.container}>
       <View style={styles.topWrapper}>
         <Text style={styles.title}>Profile</Text>
-        <Text style={styles.subtitle}>Patient Address Info.</Text>
+        <Text style={styles.subtitle}>Patient Address Info:</Text>
+      </View>
+      <View style={styles.addressStycle}>
         <Text style={styles.address}>{FullAddress}</Text>
       </View>
-
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Street Name"
-          placeholderTextColor="green"
-          onChangeText={(name) => setStreet(name)}
-          value={Street}
-        />
-      </View>
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Zip Code"
-          placeholderTextColor="green"
-          onChangeText={(zip) => setZip(zip)}
-          value={Zip}
-        />
-      </View>
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="State"
-          placeholderTextColor="green"
-          onChangeText={(s) => setStateLocate(s)}
-          value={State_locate}
-        />
-      </View>
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="City"
-          placeholderTextColor="green"
-          onChangeText={(city) => setCity(city)}
-          value={City}
-        />
-      </View>
-
-      <Pressable
-        style={styles.button}
-        title=""
-        onPress={() => {
-          update_info(Street, State_locate, City, Zip);
-        }}
-      >
-        <Text style={styles.buttonText}>Update Info</Text>
-      </Pressable>
     </View>
   );
 }
@@ -131,13 +86,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#CCFFCC",
-    alignItems: "center",
-    justifyContent: "center",
   },
   topWrapper: {
     width: disensions.width,
-    height: disensions.height / 4,
+    height: disensions.height / 3,
     alignItems: "center",
+    marginTop: 40,
   },
 
   title: {
@@ -152,39 +106,16 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     justifyContent: "center",
-    marginBottom: 30,
     fontFamily: "Sans",
   },
 
   address: {
-    fontSize: 20,
-  },
-
-  inputView: {
-    backgroundColor: "#F6F6F6",
-    borderRadius: 5,
-    width: "75%",
-    height: 60,
-    marginBottom: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row",
-    padding: 15,
-  },
-
-  button: {
-    alignItems: "center",
-    backgroundColor: "green",
-    borderRadius: 40,
-    width: disensions.width / 2,
-    height: disensions.height / 12,
-    justifyContent: "center",
-  },
-
-  buttonText: {
-    fontSize: 20,
+    fontSize: 40,
     fontWeight: "bold",
-    color: "white",
-    fontFamily: "Sans",
+  },
+
+  addressStycle: {
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

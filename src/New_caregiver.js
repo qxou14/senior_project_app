@@ -12,14 +12,15 @@ import Feather from "react-native-vector-icons/Feather";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { SafeAreaView } from "react-native-safe-area-context";
-import AppLoading from 'expo-app-loading';
-import { LinearGradient } from 'expo-linear-gradient';
-import { useFonts, 
-         Montserrat_400Regular,
-         Montserrat_500Medium,
-         Montserrat_600SemiBold,
-         Montserrat_700Bold,
-       } from '@expo-google-fonts/montserrat';
+import AppLoading from "expo-app-loading";
+import { LinearGradient } from "expo-linear-gradient";
+import {
+  useFonts,
+  Montserrat_400Regular,
+  Montserrat_500Medium,
+  Montserrat_600SemiBold,
+  Montserrat_700Bold,
+} from "@expo-google-fonts/montserrat";
 
 Feather.loadFont();
 MaterialCommunityIcons.loadFont();
@@ -100,17 +101,20 @@ export default function Caregiver_content({ navigation }) {
 
   return (
     <View style={styles.container}>
-
       <LinearGradient
         // Background Linear Gradient
         colors={["#D1E9D1", "#D1E9D1"]}
         style={styles.background}
-        start = {[0.0, 0.1]}
-      />  
+        start={[0.0, 0.1]}
+      />
       <SafeAreaView>
         <View style={styles.headerWrapper}>
           <View style={styles.left}>
-            <Feather name="settings" size={56} />
+            <Feather
+              name="settings"
+              size={56}
+              onPress={() => navigation.navigate("Profile_care")}
+            />
             <Text style={styles.leftword}>Profile</Text>
           </View>
 
@@ -172,7 +176,7 @@ export default function Caregiver_content({ navigation }) {
 
 const styles = StyleSheet.create({
   background: {
-    position: 'absolute',
+    position: "absolute",
     left: 0,
     right: 0,
     top: 0,
@@ -270,6 +274,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "black",
     textAlign: "center",
-    fontFamily: "Montserrat_600SemiBold"
+    fontFamily: "Montserrat_600SemiBold",
   },
 });

@@ -10,6 +10,7 @@ import Todo_Giver from "../src/Todo_Giver";
 import C_Album from "../src/Caregiver_album";
 import Add_photo from "../src/Add_photo";
 import Profile_patient from "../src/Profile_patient";
+import Profile_care from "../src/caregiver_profile";
 import PatientMaps from "../src/PatientMaps";
 import CaregiverMaps from "../src/CaregiverMaps";
 import C_question from "../src/caregiver_game_question";
@@ -45,6 +46,7 @@ const AppNavigator = () => {
 
         <Stack.Screen name="Add_photo" component={Add_photo} />
         <Stack.Screen name="Profile_patient" component={Profile_patient} />
+        <Stack.Screen name="Profile_care" component={Profile_care} />
 
         <Stack.Screen name="PatientMaps" component={PatientMaps} />
         <Stack.Screen name="CaregiverMaps" component={CaregiverMaps} />
