@@ -3,26 +3,26 @@ const Question_sets = [
     question: "When is your birthday? ",
     options: [
       {
-        text: "01/02/1949",
+        text: "01/02/1959",
         isAns: false,
       },
 
       {
-        text: "02/03/1949",
+        text: "02/03/1969",
         isAns: false,
       },
       {
-        text: "01/02/1942",
+        text: "01/02/1972",
         isAns: false,
       },
       {
-        text: "07/12/1977",
+        text: "07/12/1961",
         isAns: true,
       },
     ],
   },
   {
-    question: "What is the name of your pet? ",
+    question: "What is your husband's name ?  ",
     options: [
       {
         text: "Jason",
@@ -37,7 +37,7 @@ const Question_sets = [
         isAns: false,
       },
       {
-        text: "lyle",
+        text: "Tom",
         isAns: true,
       },
     ],
@@ -87,22 +87,22 @@ const Question_sets = [
   },
 
   {
-    question: "What is your favorite food?",
+    question: "What is your favorite flower?",
     options: [
       {
-        text: "Potato",
+        text: "Carnations",
         isAns: false,
       },
       {
-        text: "Mushroom",
+        text: "Daisies",
         isAns: true,
       },
       {
-        text: "Spinach",
+        text: "Gardenias",
         isAns: false,
       },
       {
-        text: "Tomato",
+        text: "Iris",
         isAns: false,
       },
     ],

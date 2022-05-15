@@ -102,7 +102,6 @@ export default function Add_photo({ navigation }) {
         <TextInput
           style={styles.describe}
           placeholder="Enter the description"
-          multiline={true}
           onChangeText={setDescription}
           value={description}
         ></TextInput>
